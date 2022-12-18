@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script for controlling the player character
 public class PlayerController : Character
 {
-    [Header("Player extention")]
+    #region Data Members
+    [Header("Player Extention")]
     [Tooltip("Dash speed of the player in m/s")]
     public float dashSpeed;
 
@@ -23,9 +25,10 @@ public class PlayerController : Character
 
     // player
     private Vector2 _move;
+    [SerializeField]
     private float _speed;
     private float _targetRotation = 0.0f;
-    [HideInInspector] public Vector3 direction;
+    public Vector3 direction;
     private float _rotationVelocity;
     [HideInInspector] public bool rotationLock;
 
@@ -34,7 +37,9 @@ public class PlayerController : Character
     private PlayerInputsReceiver _input;
 
     private bool _hasAnimator;
+    #endregion
 
+    #region Unity Callbacks
     // Start is called before the first frame update
     void Start()
     {
@@ -46,9 +51,11 @@ public class PlayerController : Character
     // Update is called once per frame
     void Update()
     {
-        direction = (transform.rotation * Vector3.forward).normalized;
+        direction = (transform.rotation * Vector3.forward);
     }
+    #endregion
 
+    #region Methods
     public void Move()
     {
         _move = _input.move;
@@ -59,27 +66,7 @@ public class PlayerController : Character
         // if there is no input, set the target speed to 0
         if (_move == Vector2.zero) targetSpeed = 0.0f;
 
-        // a reference to the players current horizontal velocity
-        float currentHorizontalSpeed = new Vector3(_rigidbody.velocity.x, 0.0f, _rigidbody.velocity.z).magnitude;
-
-        float speedOffset = 0.1f;
-
-        // accelerate or decelerate to target speed
-        if (currentHorizontalSpeed < targetSpeed - speedOffset ||
-            currentHorizontalSpeed > targetSpeed + speedOffset)
-        {
-            // creates curved result rather than a linear one giving a more organic speed change
-            // note T in Lerp is clamped, so we don't need to clamp our speed
-            _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed,
-                Time.deltaTime * SpeedChangeRate);
-
-            // round speed to 3 decimal places
-            _speed = Mathf.Round(_speed * 1000f) / 1000f;
-        }
-        else
-        {
-            _speed = targetSpeed;
-        }
+        GetToTargetSpeed(targetSpeed);
 
         // normalise input direction
         Vector3 inputDirection = new Vector3(_move.x, 0.0f, _move.y).normalized;
@@ -108,10 +95,39 @@ public class PlayerController : Character
         }
     }
 
+    public void GetToTargetSpeed(float targetSpeed)
+    {
+        // a reference to the players current horizontal velocity
+        float currentHorizontalSpeed = new Vector3(_rigidbody.velocity.x, 0.0f, _rigidbody.velocity.z).magnitude;
+
+        float speedOffset = 0.1f;
+
+        // accelerate or decelerate to target speed
+        if (currentHorizontalSpeed < targetSpeed - speedOffset ||
+            currentHorizontalSpeed > targetSpeed + speedOffset)
+        {
+            // creates curved result rather than a linear one giving a more organic speed change
+            // note T in Lerp is clamped, so we don't need to clamp our speed
+            _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed,
+                Time.deltaTime * SpeedChangeRate);
+
+            // round speed to 3 decimal places
+            _speed = Mathf.Round(_speed * 1000f) / 1000f;
+        }
+        else
+        {
+            _speed = targetSpeed;
+        }
+    }
+
     public void StopMove()
     {
         _move = Vector2.zero;
-        _rigidbody.velocity = Vector3.zero;
+
+        GetToTargetSpeed(0.0f);
+
+        Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+        _rigidbody.velocity = targetDirection * _speed;
 
         // update animator if using character
         if (_hasAnimator)
@@ -153,6 +169,24 @@ public class PlayerController : Character
         }
     }
 
+    public IEnumerator SwordAttackHit(float waitTime, StatusEffect effect)
+    {
+        yield return new WaitForSeconds(waitTime);
+
+        Collider[] colliders = Physics.OverlapSphere(attackOrigin.position, attackRadius, damageLayer);
+        foreach (Collider collider in colliders)
+        {
+            HealthController _health = collider.gameObject.GetComponent<HealthController>();
+            _health.ChangeHealth(-attackDamage);
+
+            if (effect != null)
+            {
+                StatusEffectController _effectController = collider.gameObject.GetComponent<StatusEffectController>();
+                _effectController.ApplyEffect(effect, gameObject);
+            }
+        }
+    }
+
     public void MagicAttackStart()
     {
         _input.magic = false;
@@ -170,4 +204,5 @@ public class PlayerController : Character
         transform.rotation = rotationLock ? transform.rotation : _input.lookRotation;
         rotationLock = true;
     }
+    #endregion
 }

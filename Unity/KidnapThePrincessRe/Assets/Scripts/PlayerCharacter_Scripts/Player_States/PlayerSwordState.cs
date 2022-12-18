@@ -6,15 +6,19 @@ public class PlayerSwordState : StateMachineBehaviour
 {
     private PlayerController _controller;
 
+    public float delayTime;
+
+    public StatusEffect statusEffect;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("isWalking", false);
         
-
         _controller = animator.GetComponent<PlayerController>();
 
         _controller.SwordAttackStart();
+        _controller.StartCoroutine(_controller.SwordAttackHit(delayTime, statusEffect));
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
     [Header("Character")]
     [Tooltip("Move speed of the character in m/s")]
     public float moveSpeed;
 
-    [Tooltip("Attack point of the character")]
-    public int attack;
+    [Tooltip("Attack damage of the character")]
+    public int attackDamage;
 
     [Tooltip("Origin of the character's attack")]
     public Transform attackOrigin;
+
+    [Tooltip("Melee attack radius of the character")]
+    public float attackRadius;
 
     [Tooltip("LayerMask of objects that can be attacked by the character")]
     public LayerMask damageLayer;
@@ -28,4 +31,15 @@ public class Character : MonoBehaviour
     {
         
     }
+
+#if UNITY_EDITOR
+    void OnDrawGizmos()
+    {
+        if (attackOrigin != null && attackRadius > 0.0f)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(attackOrigin.position, attackRadius);
+        }
+    }
+#endif
 }
