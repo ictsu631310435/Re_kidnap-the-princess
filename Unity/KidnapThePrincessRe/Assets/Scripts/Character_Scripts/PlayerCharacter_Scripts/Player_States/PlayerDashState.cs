@@ -15,6 +15,8 @@ public class PlayerDashState : StateMachineBehaviour
 
         _duration = _controller.dashDuration;
         _controller.DashStart();
+        // Enable dashCollider to apply StatusEffect to Enemy hit
+        _controller.dashCollider.SetActive(true);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -33,10 +35,11 @@ public class PlayerDashState : StateMachineBehaviour
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        // Disable dashCollider when exit this state
+        _controller.dashCollider.SetActive(false);
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

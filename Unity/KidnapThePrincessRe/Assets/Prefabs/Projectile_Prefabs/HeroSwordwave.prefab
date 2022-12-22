@@ -85,7 +85,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2.5
   m_Direction: 0
-  m_Center: {x: 0, y: 0, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0.25}
 --- !u!1001 &3724631347329167343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106,6 +106,11 @@ PrefabInstance:
     - target: {fileID: 579981883625753354, guid: 9b8bf30d976d760458f26ac2dabbb345,
         type: 3}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973708440632948065, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2109350345973077711, guid: 9b8bf30d976d760458f26ac2dabbb345,
@@ -182,6 +187,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670180388476740009, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670180388476740009, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b8bf30d976d760458f26ac2dabbb345, type: 3}

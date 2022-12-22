@@ -55,7 +55,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   attackDamage: 1
-  inflictEffect: {fileID: 0}
+  inflictEffect: {fileID: 11400000, guid: a4ce4871247958444bd8bca9deddb52c, type: 2}
 --- !u!135 &3765781130491485034
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -92,6 +92,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7057083296133051840}
     m_Modifications:
+    - target: {fileID: 1973708440632948065, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.78431374
+      objectReference: {fileID: 0}
     - target: {fileID: 4795729542844333614, guid: 9b8bf30d976d760458f26ac2dabbb345,
         type: 3}
       propertyPath: m_RootOrder

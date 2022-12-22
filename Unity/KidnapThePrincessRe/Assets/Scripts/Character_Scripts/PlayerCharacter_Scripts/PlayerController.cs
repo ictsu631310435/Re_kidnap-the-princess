@@ -14,6 +14,8 @@ public class PlayerController : Character
     [Tooltip("Dash duration of the player in second")]
     public float dashDuration;
 
+    public GameObject dashCollider;
+
     [Tooltip("How fast the character turns to face movement direction")]
     [Range(0.0f, 0.3f)]
     public float RotationSmoothTime;
