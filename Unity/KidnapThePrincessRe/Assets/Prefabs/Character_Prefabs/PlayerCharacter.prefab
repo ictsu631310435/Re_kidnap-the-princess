@@ -160,6 +160,9 @@ MonoBehaviour:
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   character: {fileID: 5281709899310982683}
+  projectile: {fileID: 7266576347991697747, guid: f652436372741234aa1a02631362e6b5,
+    type: 3}
+  _speed: 0
   direction: {x: 0, y: 0, z: 0}
   rotationLock: 0
 --- !u!54 &341341297

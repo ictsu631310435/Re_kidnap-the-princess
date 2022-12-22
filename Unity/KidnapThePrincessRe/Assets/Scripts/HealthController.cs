@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
-// Script for controlling health of the character
+/// <summary>
+/// Script for controlling health of the character
+/// </summary>
 public class HealthController : MonoBehaviour
 {
     #region Data Members
