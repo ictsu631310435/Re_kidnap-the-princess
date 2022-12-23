@@ -90,7 +90,10 @@ public class PlayerController : Character
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
         // move the player
-        _rigidbody.velocity = targetDirection.normalized * _speed;
+        Vector3 v = targetDirection.normalized * _speed;
+        // Gravity
+        v.y = _rigidbody.velocity.y;
+        _rigidbody.velocity = v;
 
         // update animator if using character
         if (_hasAnimator)

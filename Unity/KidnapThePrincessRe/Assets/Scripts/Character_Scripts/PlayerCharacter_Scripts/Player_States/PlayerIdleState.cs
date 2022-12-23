@@ -19,7 +19,6 @@ public class PlayerIdleState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _controller.StopMove();
         if (_input.move != Vector2.zero)
         {
             animator.SetBool("isWalking", true);
