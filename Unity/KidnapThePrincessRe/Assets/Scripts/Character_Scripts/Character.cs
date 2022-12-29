@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// Base script for controlling a character 
+/// Base script for script controlling a character 
 /// </summary>
 public abstract class Character : MonoBehaviour
 {
@@ -22,10 +22,22 @@ public abstract class Character : MonoBehaviour
     [Tooltip("LayerMask of objects that can be attacked by the character")]
     public LayerMask damageLayer;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    [Tooltip("Character model")]
+    public GameObject character;
 
+    // HideInInspector
+    [HideInInspector] public Rigidbody rbody;
+    [HideInInspector] public Animator animator;
+
+    // Start is called before the first frame update
+    public virtual void Start()
+    {
+        TryGetComponent(out rbody);
+
+        if (character)
+        {
+            character.TryGetComponent(out animator);
+        }
     }
 
     // Update is called once per frame
@@ -37,9 +49,9 @@ public abstract class Character : MonoBehaviour
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {
-        if (attackOrigin != null && attackRadius > 0.0f)
+        if (attackOrigin && attackRadius > 0.0f)
         {
-            Gizmos.color = Color.yellow;
+            Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(attackOrigin.position, attackRadius);
         }
     }

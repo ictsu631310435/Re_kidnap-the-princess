@@ -12,6 +12,7 @@ public class KnockBack : StatusEffect
     public KnockBack()
     {
         type = "Knock back";
+        requireSource = true;
     }
 
     #region Inherited

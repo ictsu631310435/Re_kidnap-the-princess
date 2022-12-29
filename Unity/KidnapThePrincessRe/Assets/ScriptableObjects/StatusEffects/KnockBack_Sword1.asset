@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: KnockBack_Sword1
   m_EditorClassIdentifier: 
   type: KnockBack
+  requireSource: 1
   duration: 0.1
   tickRate: 0
+  indicator: {fileID: 3440546385907025495, guid: b8e28a518e8340742a72bb334d12e77f,
+    type: 3}
   force: 2

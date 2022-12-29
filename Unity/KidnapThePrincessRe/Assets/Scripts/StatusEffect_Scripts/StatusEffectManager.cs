@@ -17,7 +17,11 @@ public class StatusEffectManager : MonoBehaviour
         public GameObject source;
         public float duration;
         public float nextTickTime;
+        public GameObject indicator;
     }
+
+    public Transform indicator;
+
     [Tooltip("List holding active StatusEffects")]
     public List<EffectStats> StatusEffects;
 
@@ -73,17 +77,23 @@ public class StatusEffectManager : MonoBehaviour
             if (StatusEffects[i].duration == StatusEffects[i].statusEffect.duration)
             {
                 // Activate Effect
-                if (StatusEffects[i].source != null)
+                if (!StatusEffects[i].source || !StatusEffects[i].statusEffect.requireSource)
                 {
-                    StatusEffects[i].statusEffect.ActivateEffect(gameObject, StatusEffects[i].source);
+                    StatusEffects[i].statusEffect.ActivateEffect(gameObject);
                 }
                 else
                 {
-                    StatusEffects[i].statusEffect.ActivateEffect(gameObject);
+                    StatusEffects[i].statusEffect.ActivateEffect(gameObject, StatusEffects[i].source);
                 }
 
                 // Assign value to _newTickTime
                 _newTickTime = StatusEffects[i].nextTickTime;
+
+                // show indicator
+                if (i == 0)
+                {
+                    StatusEffects[i].indicator = Instantiate(StatusEffects[i].statusEffect.indicator, indicator);
+                }
             }
             // Tick Activation
             else if (StatusEffects[i].statusEffect.tickRate > 0 &&
@@ -120,6 +130,12 @@ public class StatusEffectManager : MonoBehaviour
     {
         // Deactivate Effect
         StatusEffects[indexToRemove].statusEffect.DeactivateEffect(gameObject);
+
+        if (StatusEffects[indexToRemove].indicator)
+        {
+            Destroy(StatusEffects[indexToRemove].indicator);
+        }
+
         // Remove StatusEffect from list
         StatusEffects.RemoveAt(indexToRemove);
     }

@@ -39,6 +39,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6941605098762218578, guid: eb9477560a5d96345aa9e02dcc403934,
         type: 3}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6941605098762218578, guid: eb9477560a5d96345aa9e02dcc403934,
+        type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
       value: 0.78431374
       objectReference: {fileID: 0}

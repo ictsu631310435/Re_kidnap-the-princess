@@ -11,8 +11,16 @@ public class PlayerInputsReceiver : MonoBehaviour
     public bool sword;
     public bool magic;
     public Vector2 mousePosition;
+
     public Vector3 lookDirection;
     public Quaternion lookRotation;
+
+    private Camera _mainCamera;
+
+    void Start()
+    {
+        _mainCamera = Camera.main;    
+    }
 
     public void OnMove(InputValue value)
     {
@@ -64,9 +72,17 @@ public class PlayerInputsReceiver : MonoBehaviour
         mousePosition = newLookDirection;
         
         // lookDirection = Vector3 of mousePosition - Vector3 of half screen resolution
-        lookDirection = new Vector3(mousePosition.x, 0.0f, mousePosition.y) - new Vector3(Screen.width / 2, 0.0f, Screen.height / 2);
-        lookDirection = lookDirection.normalized;
+        //lookDirection = new Vector3(mousePosition.x, 0.0f, mousePosition.y) - new Vector3(Screen.width / 2, 0.0f, Screen.height / 2);
+        //lookDirection = lookDirection.normalized;
 
-        lookRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
+        //lookRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
+
+        Ray ray = _mainCamera.ScreenPointToRay(mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider)
+        {
+            Vector3 hit2D = new Vector3(hit.point.x, 0.0f, hit.point.z);
+            lookDirection = (hit2D - transform.position).normalized;
+            lookRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
+        }
     }
 }

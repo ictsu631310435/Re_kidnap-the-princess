@@ -20,8 +20,9 @@ public class Dummy : Character
 
     #region Unity Callbacks
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
         _health = GetComponent<HealthController>();
     }
 

@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 204575696185099018, guid: eb9477560a5d96345aa9e02dcc403934,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 244082174539085978, guid: eb9477560a5d96345aa9e02dcc403934,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -31,6 +36,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackDamage
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6941605098762218578, guid: eb9477560a5d96345aa9e02dcc403934,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6941605098762218578, guid: eb9477560a5d96345aa9e02dcc403934,
         type: 3}

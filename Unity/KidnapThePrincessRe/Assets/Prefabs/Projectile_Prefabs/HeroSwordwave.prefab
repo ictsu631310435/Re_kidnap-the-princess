@@ -55,7 +55,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   attackDamage: 1
-  inflictEffect: {fileID: 0}
+  inflictEffect: {fileID: 11400000, guid: a4ce4871247958444bd8bca9deddb52c, type: 2}
 --- !u!54 &500300838188206822
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -96,17 +96,42 @@ PrefabInstance:
     - target: {fileID: 579981883625753354, guid: 9b8bf30d976d760458f26ac2dabbb345,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 579981883625753354, guid: 9b8bf30d976d760458f26ac2dabbb345,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 579981883625753354, guid: 9b8bf30d976d760458f26ac2dabbb345,
         type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 579981883625753354, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 579981883625753354, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 579981883625753354, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 579981883625753354, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 579981883625753354, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 1973708440632948065, guid: 9b8bf30d976d760458f26ac2dabbb345,
         type: 3}
@@ -178,6 +203,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6458042635024762507, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.90588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458042635024762507, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7706931678798094561, guid: 9b8bf30d976d760458f26ac2dabbb345,
         type: 3}
       propertyPath: m_Name
@@ -190,8 +225,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8670180388476740009, guid: 9b8bf30d976d760458f26ac2dabbb345,
         type: 3}
-      propertyPath: LightsModule.enabled
+      propertyPath: LightsModule.color
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670180388476740009, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670180388476740009, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670180388476740009, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: RotationModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670180388476740009, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: RotationModule.x.scalar
+      value: 0.5235988
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670180388476740009, guid: 9b8bf30d976d760458f26ac2dabbb345,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8670180388476740009, guid: 9b8bf30d976d760458f26ac2dabbb345,
         type: 3}

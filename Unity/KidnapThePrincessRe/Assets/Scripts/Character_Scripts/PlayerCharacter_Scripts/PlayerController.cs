@@ -23,33 +23,25 @@ public class PlayerController : Character
     [Tooltip("Acceleration and deceleration")]
     public float SpeedChangeRate;
 
-    [Tooltip("Character model")]
-    public GameObject character;
-
     public GameObject projectile;
 
-    // player
+    //
     private Vector2 _move;
-    [SerializeField]
     private float _speed;
     private float _targetRotation = 0.0f;
-    public Vector3 direction;
+    private Vector3 direction;
     private float _rotationVelocity;
     [HideInInspector] public bool rotationLock;
 
-    private Animator _animator;
-    private Rigidbody _rigidbody;
     private PlayerInputsReceiver _input;
-
-    private bool _hasAnimator;
     #endregion
 
     #region Unity Callbacks
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        _hasAnimator = character.TryGetComponent(out _animator);
-        _rigidbody = GetComponent<Rigidbody>();
+        base.Start();
+
         _input = GetComponent<PlayerInputsReceiver>();
     }
 
@@ -92,21 +84,21 @@ public class PlayerController : Character
         // move the player
         Vector3 v = targetDirection.normalized * _speed;
         // Gravity
-        v.y = _rigidbody.velocity.y;
-        _rigidbody.velocity = v;
+        v.y = rbody.velocity.y;
+        rbody.velocity = v;
 
         // update animator if using character
-        if (_hasAnimator)
+        if (animator)
         {
             bool walkBool = _move != Vector2.zero;
-            _animator.SetBool("isWalking", walkBool);
+            animator.SetBool("isWalking", walkBool);
         }
     }
 
     public void GetToTargetSpeed(float targetSpeed)
     {
         // a reference to the players current horizontal velocity
-        float currentHorizontalSpeed = new Vector3(_rigidbody.velocity.x, 0.0f, _rigidbody.velocity.z).magnitude;
+        float currentHorizontalSpeed = new Vector3(rbody.velocity.x, 0.0f, rbody.velocity.z).magnitude;
 
         float speedOffset = 0.1f;
 
@@ -135,33 +127,33 @@ public class PlayerController : Character
         GetToTargetSpeed(0.0f);
 
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-        _rigidbody.velocity = targetDirection * _speed;
+        rbody.velocity = targetDirection * _speed;
 
         // update animator if using character
-        if (_hasAnimator)
+        if (animator)
         {
-            _animator.SetBool("isWalking", false);
+            animator.SetBool("isWalking", false);
         }
     }
 
     public void DashStart()
     {
-        _rigidbody.AddForce(dashSpeed * direction, ForceMode.Impulse);
+        rbody.AddForce(dashSpeed * direction, ForceMode.Impulse);
 
-        if (_hasAnimator)
+        if (animator)
         {
-            _animator.SetBool("isDashing", true);
+            animator.SetBool("isDashing", true);
         }
     }
 
     public void DashStop()
     {
-        _rigidbody.velocity = Vector3.zero;
+        rbody.velocity = Vector3.zero;
         _input.dash = false;
 
-        if (_hasAnimator)
+        if (animator)
         {
-            _animator.SetBool("isDashing", false);
+            animator.SetBool("isDashing", false);
         }
     }
 
@@ -171,13 +163,13 @@ public class PlayerController : Character
 
         LockRotation();
 
-        if (_hasAnimator)
+        if (animator)
         {
-            _animator.SetTrigger("Sword");
+            animator.SetTrigger("Sword");
         }
     }
 
-    public IEnumerator SwordAttackHit(float waitTime, StatusEffect effect)
+    public IEnumerator SwordAttackHit(float waitTime, StatusEffect inflictEffect)
     {
         yield return new WaitForSeconds(waitTime);
 
@@ -187,10 +179,10 @@ public class PlayerController : Character
             HealthController _health = collider.gameObject.GetComponent<HealthController>();
             _health.ChangeHealth(-attackDamage);
 
-            if (effect != null)
+            if (inflictEffect != null)
             {
                 StatusEffectManager _effectManager = collider.gameObject.GetComponent<StatusEffectManager>();
-                _effectManager.ApplyEffect(effect, gameObject);
+                _effectManager.ApplyEffect(inflictEffect, gameObject);
             }
         }
     }
@@ -201,9 +193,9 @@ public class PlayerController : Character
 
         LockRotation();
 
-        if (_hasAnimator)
+        if (animator)
         {
-            _animator.SetTrigger("Magic");
+            animator.SetTrigger("Magic");
         }
     }
 
