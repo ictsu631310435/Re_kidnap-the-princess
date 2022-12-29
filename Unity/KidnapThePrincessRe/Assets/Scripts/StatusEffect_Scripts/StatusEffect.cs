@@ -6,10 +6,15 @@ using UnityEngine;
 /// </summary>
 public abstract class StatusEffect : ScriptableObject
 {
+    [Header("Status Effect")]
     public string type;
     public bool requireSource;
     public float duration;
+    [Tooltip("Tick rate for over time effect")]
     public float tickRate;
+
+    [Tooltip("Priority for displaying indicator, higher numbers have greater priority")]
+    public int priority;
     public GameObject indicator;
 
     // Base method for activating effect

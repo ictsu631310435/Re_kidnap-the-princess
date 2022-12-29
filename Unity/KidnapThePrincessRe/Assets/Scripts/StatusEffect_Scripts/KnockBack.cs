@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New_KnockBack", menuName = "ScriptableObjects/StatusEffect/Knock back")]
 public class KnockBack : StatusEffect
 {
+    [Header("Knock Back")]
     public float force;
 
     #region Methods

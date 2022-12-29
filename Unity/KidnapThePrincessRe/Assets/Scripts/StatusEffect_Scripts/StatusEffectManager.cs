@@ -25,6 +25,8 @@ public class StatusEffectManager : MonoBehaviour
     [Tooltip("List holding active StatusEffects")]
     public List<EffectStats> StatusEffects;
 
+    private int _topPriority;
+
     private float _newDuration;
     private float _newTickTime;
     #endregion
@@ -58,6 +60,9 @@ public class StatusEffectManager : MonoBehaviour
         // If existed, override existing StatusEffect
         if (index != -1)
         {
+            // Destroy previous indicator
+            Destroy(StatusEffects[index].indicator);
+
             StatusEffects[index] = effectStat;
         }
         // If not, add a new one
@@ -65,6 +70,9 @@ public class StatusEffectManager : MonoBehaviour
         {
             StatusEffects.Add(effectStat);
         }
+
+        // Find which StatusEffect to display indicator
+        _topPriority = effect.priority > _topPriority? effect.priority : _topPriority;
     }
 
     // Method for handling active StatusEffects
@@ -77,37 +85,21 @@ public class StatusEffectManager : MonoBehaviour
             if (StatusEffects[i].duration == StatusEffects[i].statusEffect.duration)
             {
                 // Activate Effect
-                if (!StatusEffects[i].source || !StatusEffects[i].statusEffect.requireSource)
-                {
-                    StatusEffects[i].statusEffect.ActivateEffect(gameObject);
-                }
-                else
-                {
-                    StatusEffects[i].statusEffect.ActivateEffect(gameObject, StatusEffects[i].source);
-                }
+                ActivateEffectAt(i);
 
                 // Assign value to _newTickTime
                 _newTickTime = StatusEffects[i].nextTickTime;
 
-                // show indicator
-                if (i == 0)
-                {
-                    StatusEffects[i].indicator = Instantiate(StatusEffects[i].statusEffect.indicator, indicator);
-                }
+                // Create new indicator
+                StatusEffects[i].indicator = Instantiate(StatusEffects[i].statusEffect.indicator, indicator);
             }
             // Tick Activation
             else if (StatusEffects[i].statusEffect.tickRate > 0 &&
                      StatusEffects[i].duration <= StatusEffects[i].nextTickTime)
             {
                 // Activate Effect
-                if (StatusEffects[i].source != null)
-                {
-                    StatusEffects[i].statusEffect.ActivateEffect(gameObject, StatusEffects[i].source);
-                }
-                else
-                {
-                    StatusEffects[i].statusEffect.ActivateEffect(gameObject);
-                }
+                ActivateEffectAt(i);
+
                 // Calculate nextTickTime and assign value to _newTickTime
                 _newTickTime = StatusEffects[i].nextTickTime - StatusEffects[i].statusEffect.tickRate;
             }
@@ -117,27 +109,46 @@ public class StatusEffectManager : MonoBehaviour
             StatusEffects[i].duration = _newDuration;
             StatusEffects[i].nextTickTime = _newTickTime;
 
+            // Update indicator display
+            bool isTop = StatusEffects[i].statusEffect.priority == _topPriority;
+            StatusEffects[i].indicator.SetActive(isTop);
+
             // Remove a StatusEffect when it expired 
             if (StatusEffects[i].duration <= 0)
             {
-                RemoveEffect(i);
+                RemoveEffectAt(i);
             }
         }
     }
 
+    public void ActivateEffectAt(int index)
+    {
+        // Do not require source or source is no longer present
+        if (!StatusEffects[index].statusEffect.requireSource || !StatusEffects[index].source)
+        {
+            StatusEffects[index].statusEffect.ActivateEffect(gameObject);
+        }
+        // Require source and source is still present
+        else
+        {
+            StatusEffects[index].statusEffect.ActivateEffect(gameObject, StatusEffects[index].source);
+        }
+    }
+
     // Method for removing a StatusEffect
-    public void RemoveEffect(int indexToRemove)
+    public void RemoveEffectAt(int index)
     {
         // Deactivate Effect
-        StatusEffects[indexToRemove].statusEffect.DeactivateEffect(gameObject);
+        StatusEffects[index].statusEffect.DeactivateEffect(gameObject);
 
-        if (StatusEffects[indexToRemove].indicator)
+        // Destroy indicator, if it has not been destroyed
+        if (StatusEffects[index].indicator)
         {
-            Destroy(StatusEffects[indexToRemove].indicator);
+            Destroy(StatusEffects[index].indicator);
         }
 
         // Remove StatusEffect from list
-        StatusEffects.RemoveAt(indexToRemove);
+        StatusEffects.RemoveAt(index);
     }
     #endregion
 }
