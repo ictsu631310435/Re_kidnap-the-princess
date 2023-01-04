@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// Base script for creating StatusEffect
+/// Base script for creating Status Effect
 /// </summary>
 public abstract class StatusEffect : ScriptableObject
 {

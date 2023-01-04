@@ -5,35 +5,38 @@ using UnityEngine;
 public class PlayerIdleState : StateMachineBehaviour
 {
     private PlayerInputsReceiver _input;
-    private PlayerController _controller;
+    private PlayerController _player;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _input = animator.GetComponent<PlayerInputsReceiver>();
-        _controller = animator.GetComponent<PlayerController>();
+        _player = animator.GetComponent<PlayerController>();
 
-        _controller.rotationLock = false;
+        _player.rotationLock = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (_input.move != Vector2.zero)
+        if (_player.canAct)
         {
-            animator.SetBool("isWalking", true);
-        }
-        else if (_input.dash)
-        {
-            animator.SetBool("Dash", true);
-        }
-        else if (_input.sword)
-        {
-            animator.SetBool("Sword", true);
-        }
-        else if (_input.magic)
-        {
-            animator.SetBool("Magic", true);
+            if (_input.move != Vector2.zero)
+            {
+                animator.SetBool("isWalking", true);
+            }
+            else if (_input.dash)
+            {
+                animator.SetBool("Dash", true);
+            }
+            else if (_input.sword)
+            {
+                animator.SetBool("Sword", true);
+            }
+            else if (_input.magic)
+            {
+                animator.SetBool("Magic", true);
+            }
         }
     }
 

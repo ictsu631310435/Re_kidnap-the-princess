@@ -29,15 +29,19 @@ public abstract class Character : MonoBehaviour
     [HideInInspector] public Rigidbody rbody;
     [HideInInspector] public Animator animator;
 
+    [HideInInspector] public bool canAct;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
-        TryGetComponent(out rbody);
+        rbody = GetComponent<Rigidbody>();
 
         if (character)
         {
             character.TryGetComponent(out animator);
         }
+
+        canAct = true;
     }
 
     // Update is called once per frame
@@ -47,7 +51,7 @@ public abstract class Character : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    void OnDrawGizmos()
+    public virtual void OnDrawGizmos()
     {
         if (attackOrigin && attackRadius > 0.0f)
         {

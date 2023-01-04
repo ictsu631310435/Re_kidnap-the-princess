@@ -5,37 +5,39 @@ using UnityEngine;
 public class PlayerWalkState : StateMachineBehaviour
 {
     private PlayerInputsReceiver _input;
-    private PlayerController _controller;
-    private Rigidbody _rigidbody;
+    private PlayerController _player;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _input = animator.GetComponent<PlayerInputsReceiver>();
-        _controller = animator.GetComponent<PlayerController>();
-        _rigidbody = animator.GetComponent<Rigidbody>();
+        _player = animator.GetComponent<PlayerController>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _controller.Move();
-
-        if (_rigidbody.velocity == Vector3.zero)
+        if (_input.move == Vector2.zero || !_player.canAct)
         {
             animator.SetBool("isWalking", false);
         }
-        else if (_input.dash)
+
+        if (_player.canAct)
         {
-            animator.SetBool("Dash", true);
-        }
-        else if (_input.sword)
-        {
-            animator.SetBool("Sword", true);
-        }
-        else if (_input.magic)
-        {
-            animator.SetBool("Magic", true);
+            _player.Move();
+
+            if (_input.dash)
+            {
+                animator.SetBool("Dash", true);
+            }
+            else if (_input.sword)
+            {
+                animator.SetBool("Sword", true);
+            }
+            else if (_input.magic)
+            {
+                animator.SetBool("Magic", true);
+            }
         }
     }
 
@@ -43,17 +45,10 @@ public class PlayerWalkState : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("isWalking", false);
+
+        if (_player.animator && !_player.canAct)
+        {
+            _player.animator.SetBool("isWalking", false);
+        }
     }
-
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
 }
