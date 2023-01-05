@@ -215,6 +215,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainingDummy
       objectReference: {fileID: 0}
+    - target: {fileID: 1729048166252644225, guid: 6d1618f8c566e9d4193f344a7d975a84,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1729048166252644351, guid: 6d1618f8c566e9d4193f344a7d975a84,
         type: 3}
       propertyPath: m_RootOrder
@@ -269,6 +274,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758523456318798418, guid: 6d1618f8c566e9d4193f344a7d975a84,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2758523456396529890, guid: 6d1618f8c566e9d4193f344a7d975a84,
         type: 3}
@@ -778,15 +788,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 930783773566918170, guid: 84aeeeb41925aa34eb2c14a961271ed5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 930783773787206826, guid: 84aeeeb41925aa34eb2c14a961271ed5,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2334253360641888515, guid: 84aeeeb41925aa34eb2c14a961271ed5,
+        type: 3}
+      propertyPath: uniqueID
+      value: 5098678951714976630
+      objectReference: {fileID: 0}
     - target: {fileID: 3619485585069065856, guid: 84aeeeb41925aa34eb2c14a961271ed5,
         type: 3}
       propertyPath: m_Name
       value: KnightEnemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619485585069065856, guid: 84aeeeb41925aa34eb2c14a961271ed5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3619485585069065886, guid: 84aeeeb41925aa34eb2c14a961271ed5,
         type: 3}
@@ -1146,15 +1171,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 930783773566918170, guid: 84aeeeb41925aa34eb2c14a961271ed5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 930783773787206826, guid: 84aeeeb41925aa34eb2c14a961271ed5,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2334253360641888515, guid: 84aeeeb41925aa34eb2c14a961271ed5,
+        type: 3}
+      propertyPath: uniqueID
+      value: 1385737599550734616
+      objectReference: {fileID: 0}
     - target: {fileID: 3619485585069065856, guid: 84aeeeb41925aa34eb2c14a961271ed5,
         type: 3}
       propertyPath: m_Name
       value: KnightEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619485585069065856, guid: 84aeeeb41925aa34eb2c14a961271ed5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3619485585069065886, guid: 84aeeeb41925aa34eb2c14a961271ed5,
         type: 3}
@@ -1294,15 +1334,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 930783773566918170, guid: 84aeeeb41925aa34eb2c14a961271ed5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 930783773787206826, guid: 84aeeeb41925aa34eb2c14a961271ed5,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2334253360641888515, guid: 84aeeeb41925aa34eb2c14a961271ed5,
+        type: 3}
+      propertyPath: uniqueID
+      value: 3143711866978638569
+      objectReference: {fileID: 0}
     - target: {fileID: 3619485585069065856, guid: 84aeeeb41925aa34eb2c14a961271ed5,
         type: 3}
       propertyPath: m_Name
       value: KnightEnemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619485585069065856, guid: 84aeeeb41925aa34eb2c14a961271ed5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3619485585069065886, guid: 84aeeeb41925aa34eb2c14a961271ed5,
         type: 3}
@@ -1716,15 +1771,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 930783773566918170, guid: 84aeeeb41925aa34eb2c14a961271ed5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 930783773787206826, guid: 84aeeeb41925aa34eb2c14a961271ed5,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2334253360641888515, guid: 84aeeeb41925aa34eb2c14a961271ed5,
+        type: 3}
+      propertyPath: uniqueID
+      value: 9175150730113537831
+      objectReference: {fileID: 0}
     - target: {fileID: 3619485585069065856, guid: 84aeeeb41925aa34eb2c14a961271ed5,
         type: 3}
       propertyPath: m_Name
       value: KnightEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619485585069065856, guid: 84aeeeb41925aa34eb2c14a961271ed5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3619485585069065886, guid: 84aeeeb41925aa34eb2c14a961271ed5,
         type: 3}

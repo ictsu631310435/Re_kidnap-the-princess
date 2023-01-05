@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 /// <summary>
 /// Script for controlling the player character
 /// </summary>
 public class PlayerController : Character
 {
     #region Data Members
-    [Header("Player Extention")]
+    [Header("Player Character")]
     [Tooltip("Dash speed of the player in m/s")]
     public float dashSpeed;
 
@@ -25,6 +26,9 @@ public class PlayerController : Character
 
     public GameObject projectile;
 
+    public int maxMana;
+    public Slider manaSlider;
+
     //
     private Vector2 _move;
     private float _speed;
@@ -34,6 +38,8 @@ public class PlayerController : Character
     [HideInInspector] public bool rotationLock;
 
     private PlayerInputsReceiver _input;
+
+    [HideInInspector] public int currentMana = 0;
     #endregion
 
     #region Unity Callbacks
@@ -43,6 +49,9 @@ public class PlayerController : Character
         base.Start();
 
         _input = GetComponent<PlayerInputsReceiver>();
+
+        manaSlider.maxValue = maxMana;
+        manaSlider.value = currentMana;
     }
 
     // Update is called once per frame
@@ -184,7 +193,12 @@ public class PlayerController : Character
                 StatusEffectManager _effectManager = collider.gameObject.GetComponent<StatusEffectManager>();
                 _effectManager.ApplyEffect(inflictEffect, gameObject);
             }
+
+            currentMana++;
         }
+
+        currentMana = Mathf.Clamp(currentMana, 0, maxMana);
+        manaSlider.value = currentMana;
     }
 
     public void MagicAttackStart()
@@ -192,6 +206,9 @@ public class PlayerController : Character
         _input.magic = false;
 
         LockRotation();
+
+        currentMana -= 3;
+        manaSlider.value = currentMana;
 
         if (animator)
         {

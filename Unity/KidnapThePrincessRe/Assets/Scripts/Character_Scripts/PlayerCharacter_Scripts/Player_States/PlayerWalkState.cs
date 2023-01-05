@@ -36,7 +36,14 @@ public class PlayerWalkState : StateMachineBehaviour
             }
             else if (_input.magic)
             {
-                animator.SetBool("Magic", true);
+                if (_player.currentMana < 3)
+                {
+                    _input.magic = false;
+                }
+                else
+                {
+                    animator.SetBool("Magic", true);
+                }
             }
         }
     }
