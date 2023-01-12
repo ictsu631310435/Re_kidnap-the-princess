@@ -194,11 +194,8 @@ public class PlayerController : Character
                 _effectManager.ApplyEffect(inflictEffect, gameObject);
             }
 
-            currentMana++;
+            ChangeMana(1);
         }
-
-        currentMana = Mathf.Clamp(currentMana, 0, maxMana);
-        manaSlider.value = currentMana;
     }
 
     public void MagicAttackStart()
@@ -207,8 +204,7 @@ public class PlayerController : Character
 
         LockRotation();
 
-        currentMana -= 3;
-        manaSlider.value = currentMana;
+        ChangeMana(-3);
 
         if (animator)
         {
@@ -228,6 +224,13 @@ public class PlayerController : Character
     {
         transform.rotation = rotationLock ? transform.rotation : _input.lookRotation;
         rotationLock = true;
+    }
+
+    public void ChangeMana(int changeAmount)
+    {
+        currentMana += changeAmount;
+        currentMana = Mathf.Clamp(currentMana, 0, maxMana);
+        manaSlider.value = currentMana;
     }
     #endregion
 }

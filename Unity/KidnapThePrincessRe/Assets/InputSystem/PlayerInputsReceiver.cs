@@ -15,6 +15,8 @@ public class PlayerInputsReceiver : MonoBehaviour
     public Vector3 lookDirection;
     public Quaternion lookRotation;
 
+    public bool heal;
+
     private Camera _mainCamera;
 
     void Start()
@@ -45,6 +47,11 @@ public class PlayerInputsReceiver : MonoBehaviour
     public void OnLook(InputValue value)
     {
         LookInput(value.Get<Vector2>());
+    }
+
+    public void OnHeal(InputValue value)
+    {
+        HealInput(value.isPressed);
     }
 
     public void MoveInput(Vector2 newMoveDirection)
@@ -84,5 +91,10 @@ public class PlayerInputsReceiver : MonoBehaviour
             lookDirection = (hit2D - transform.position).normalized;
             lookRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
         }
+    }
+
+    public void HealInput(bool newHealState)
+    {
+        heal = newHealState;
     }
 }

@@ -45,6 +45,18 @@ public class PlayerWalkState : StateMachineBehaviour
                     animator.SetBool("Magic", true);
                 }
             }
+            else if (_input.heal)
+            {
+                HealthController health = animator.GetComponent<HealthController>();
+                if (_player.currentMana < 5 || health.CurrentHealth >= health.maxHealth)
+                {
+                    _input.heal = false;
+                }
+                else
+                {
+                    animator.SetBool("Heal", true);
+                }
+            }
         }
     }
 
