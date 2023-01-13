@@ -306,6 +306,7 @@ MonoBehaviour:
   mousePosition: {x: 0, y: 0}
   lookDirection: {x: 0, y: 0, z: 0}
   lookRotation: {x: 0, y: 0, z: 0, w: 0}
+  heal: 0
 --- !u!114 &341341296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,8 +330,8 @@ MonoBehaviour:
   rbody: {fileID: 0}
   animator: {fileID: 0}
   canAct: 0
-  dashSpeed: 20
-  dashDuration: 0.25
+  dashSpeed: 25
+  dashDuration: 0.2
   dashCollider: {fileID: 1834966952123652663}
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10

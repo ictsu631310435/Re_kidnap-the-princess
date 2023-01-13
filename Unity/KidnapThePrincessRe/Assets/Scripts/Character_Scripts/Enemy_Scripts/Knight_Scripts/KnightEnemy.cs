@@ -18,6 +18,8 @@ public class KnightEnemy : Enemy
     public float minTimeBtwRepos;
     public float maxTimeBtwRepos;
 
+    public float engageMoveSpeed;
+
     // HideInInspector
     [Space(10)]
     /*[HideInInspector]*/ public bool inCombat;

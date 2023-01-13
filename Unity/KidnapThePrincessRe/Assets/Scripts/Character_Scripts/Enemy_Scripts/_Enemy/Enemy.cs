@@ -75,6 +75,7 @@ public abstract class Enemy : Character
                 if (!alert)
                 {
                     alert = true;
+
                     Instantiate(alertParticle, StatusIndicator);
                 }
             }

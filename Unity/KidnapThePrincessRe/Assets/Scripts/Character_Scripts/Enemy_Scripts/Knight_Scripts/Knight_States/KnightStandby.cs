@@ -14,7 +14,7 @@ public class KnightStandby : StateMachineBehaviour
         // Get Components
         _knight = animator.GetComponent<KnightEnemy>();
 
-        _knight.aiPath.canMove = false;
+        //_knight.aiPath.canMove = false;
 
         _knight.animator.SetBool("onStandby", true);
     }

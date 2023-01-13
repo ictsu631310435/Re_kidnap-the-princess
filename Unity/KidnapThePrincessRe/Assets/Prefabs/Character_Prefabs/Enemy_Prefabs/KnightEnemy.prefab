@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1108fe304bdccdd4cbd060e75c651f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 5
   attackDamage: 1
   attackOrigin: {fileID: 3619485584870916521}
   attackRadius: 0.75
@@ -111,7 +111,7 @@ MonoBehaviour:
   alert: 0
   aiPath: {fileID: 0}
   aiDestination: {fileID: 0}
-  standbyRange: 4.5
+  standbyRange: 5
   allyLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -120,6 +120,7 @@ MonoBehaviour:
     type: 3}
   minTimeBtwRepos: 1
   maxTimeBtwRepos: 3
+  engageMoveSpeed: 10
   inCombat: 0
   inCombatNum: 0
   waypoint: {fileID: 0}
