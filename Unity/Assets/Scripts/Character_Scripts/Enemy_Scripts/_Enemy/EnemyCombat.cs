@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class EnemyCombat : StateMachineBehaviour
 {
-    private Enemy _enemy;
+    [HideInInspector] public Enemy enemy;
 
     #region Unity Callbacks
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // Get Components
-        _enemy = animator.GetComponent<Enemy>();
+        enemy = animator.GetComponent<Enemy>();
 
         // Set time for next attack
-        _enemy.nextAttackTime = Time.time + _enemy.timeBtwAttacks;
+        enemy.nextAttackTime = Time.time + enemy.timeBtwAttacks;
 
-        if (_enemy.animator)
+        if (enemy.animator)
         {
-            _enemy.animator.SetBool("inCombat", true);
+            enemy.animator.SetBool("inCombat", true);
         }
     }
 
@@ -26,11 +26,11 @@ public class EnemyCombat : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // If player out of attackRange, chase after Player
-        if (_enemy.playerDistance > _enemy.attackRange)
+        if (    enemy.playerDistance > enemy.attackRange)
         {
             //Debug.Log("Player out of combatRange");
             // Set target to Player
-            _enemy.aiDestination.target = _enemy.player;
+            enemy.aiDestination.target = enemy.player;
             // Set bool for state transition to "Chase"
             animator.SetBool("isChasing", true);
         }
@@ -38,9 +38,9 @@ public class EnemyCombat : StateMachineBehaviour
         else
         {
             // If reached time to attack, attack
-            if (Time.time > _enemy.nextAttackTime)
+            if (Time.time > enemy.nextAttackTime)
             {
-                _enemy.nextAttackTime = Time.time + _enemy.timeBtwAttacks;
+                enemy.nextAttackTime = Time.time + enemy.timeBtwAttacks;
                 // Set bool for state transition to "Attack"
                 animator.SetTrigger("Attack");
             }
@@ -48,7 +48,7 @@ public class EnemyCombat : StateMachineBehaviour
             else
             {
                 // Turn to Player
-                _enemy.Turn();
+                enemy.LookAt(enemy.player);
             }
         }
     }
@@ -59,9 +59,9 @@ public class EnemyCombat : StateMachineBehaviour
         // Make sure inCombat = false when exit state
         animator.SetBool("inCombat", false);
 
-        if (_enemy.animator)
+        if (enemy.animator)
         {
-            _enemy.animator.SetBool("inCombat", false);
+            enemy.animator.SetBool("inCombat", false);
         }
     }
     #endregion

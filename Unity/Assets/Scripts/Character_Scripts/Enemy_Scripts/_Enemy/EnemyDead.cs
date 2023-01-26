@@ -6,19 +6,26 @@ using UnityEngine;
 /// </summary>
 public class EnemyDead : StateMachineBehaviour
 {
-    private Enemy _enemy;
-
     public float destroyDelaySeconds;
+
+    [HideInInspector] public Enemy enemy;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Get Components
-        _enemy = animator.GetComponent<Enemy>();
+        enemy = animator.GetComponent<Enemy>();
 
-        _enemy.aiDestination.target = null;
-        _enemy.aiPath.canMove = false;
-        _enemy.aiPath.maxSpeed = 0;
+        enemy.aiPath.canMove = false;
+        enemy.aiPath.maxSpeed = 0;
+        enemy.aiDestination.target = null;
+
+        enemy.rbody.useGravity = false;
+        enemy.GetComponent<Collider>().enabled = false;
+
+        if (enemy.animator)
+        {
+            enemy.animator.SetBool("isDead", true);
+        }
 
         Destroy(animator.gameObject, destroyDelaySeconds);
     }

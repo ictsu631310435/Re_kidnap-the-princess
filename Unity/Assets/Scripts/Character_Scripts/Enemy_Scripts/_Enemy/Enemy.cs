@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// Base script for script controlling a enemy 
+/// Base script for script controlling an enemy 
 /// </summary>
 public abstract class Enemy : Character
 {
@@ -109,15 +109,15 @@ public abstract class Enemy : Character
     #endregion
 
     #region Methods
-    // Method for Turning Character
-    public void Turn()
+    // Method for rotating enemy to look at target
+    public void LookAt(Transform target)
     {
-        Vector3 heading = player.position - transform.position;
+        Vector3 heading = target.position - transform.position;
         Vector3 direction = heading.normalized;
 
-        // Caculate rotation that Character is going to
+        // Caculate rotation this enemy is going to
         Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
-        // Rotate Character rotation toward toRotation
+        // Rotate this enemy toward toRotation
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, aiPath.rotationSpeed * Time.deltaTime);
     }
 
@@ -129,16 +129,15 @@ public abstract class Enemy : Character
         Vector3 toVector3 = new Vector3(randomPoint.x, 0.0f, randomPoint.y);
         Vector3 result = player.position + toVector3;
 
-        // If result is not inside range, get new value until inside range
-        while (Vector3.Distance(result, player.position) < minRange ||
-               Vector3.Distance(result, transform.position) > maxRange)
+        if (Vector3.Distance(result, player.position) >= minRange &&
+            Vector3.Distance(result, transform.position) <= maxRange)
         {
-            randomPoint = (Random.insideUnitCircle * maxRange);
-            toVector3 = new Vector3(randomPoint.x, 0.0f, randomPoint.y);
-            result = player.position + toVector3;
+            return result;
         }
-
-        return result;
+        else
+        {
+            return GetRandomPositionAroundPlayer(minRange, maxRange);
+        }
     }
 
     // Base method for attacking
@@ -148,19 +147,16 @@ public abstract class Enemy : Character
     // With applying StatusEffect
     public abstract void Attack(StatusEffect inflictEffect);
 
-    // Method for targeting Player
-    public void PlayerAggro()
+    public virtual void Hurt()
     {
-        aiDestination.target = player;
+        StopAllCoroutines();
+        GetComponent<Animator>().SetTrigger("Hurt");
     }
 
     public virtual void Die()
     {
+        StopAllCoroutines();
         GetComponent<Animator>().SetBool("isDead", true);
-        if (animator)
-        {
-            animator.SetTrigger("Die");
-        }
     }
     #endregion
 }

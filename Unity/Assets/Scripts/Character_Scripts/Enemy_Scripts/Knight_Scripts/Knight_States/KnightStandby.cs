@@ -53,7 +53,7 @@ public class KnightStandby : StateMachineBehaviour
                 Debug.Log(_knight.name + " | Standby: Reposition");
             }
 
-            _knight.Turn();
+            _knight.LookAt(_knight.player);
         }
     }
 

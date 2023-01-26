@@ -564,7 +564,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9fad4f37553c16844a653982d3ab7193,
         type: 3}
       propertyPath: m_Name
-      value: Darklord_Model
+      value: Darklord
       objectReference: {fileID: 0}
     - target: {fileID: 2719741552526228132, guid: 9fad4f37553c16844a653982d3ab7193,
         type: 3}

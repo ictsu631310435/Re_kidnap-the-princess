@@ -23,6 +23,9 @@ public class KnightChase : StateMachineBehaviour
             // If not entered combat, slow down and stop when target in standbyRange
             _knight.aiPath.slowdownDistance = _knight.standbyRange * 3;
             _knight.aiPath.endReachedDistance = _knight.standbyRange;
+
+            _knight.animator.SetBool("isWalking", true);
+            _knight.animator.SetBool("isRunning", false);
         }
         else
         {
@@ -31,9 +34,10 @@ public class KnightChase : StateMachineBehaviour
             // If entered combat, slow down and stop when target in attackRange
             _knight.aiPath.slowdownDistance = _knight.attackRange * 3;
             _knight.aiPath.endReachedDistance = _knight.attackRange;
-        }
 
-        _knight.animator.SetBool("isWalking", true);
+            _knight.animator.SetBool("isWalking", false);
+            _knight.animator.SetBool("isRunning", true);
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -55,7 +59,7 @@ public class KnightChase : StateMachineBehaviour
             {
                 if (_knight.playerDistance > _knight.detectRange)
                 {
-                    animator.SetBool("isChasing", false);
+                    animator.SetBool("isIdling", true);
 
                     Debug.Log(_knight.name + " | Chase: to Idle");
                 }
@@ -75,6 +79,7 @@ public class KnightChase : StateMachineBehaviour
             
         }
     }
+
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -85,6 +90,7 @@ public class KnightChase : StateMachineBehaviour
         animator.SetBool("isChasing", false);
 
         _knight.animator.SetBool("isWalking", false);
+        _knight.animator.SetBool("isRunning", false);
     }
     #endregion
 }
