@@ -37,7 +37,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486ad3541ad45744388f43d6dbdcc5fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyDelaySeconds: 1.5
+  destroyDelaySeconds: 2
   enemy: {fileID: 0}
 --- !u!1102 &-6274233362460753152
 AnimatorState:
