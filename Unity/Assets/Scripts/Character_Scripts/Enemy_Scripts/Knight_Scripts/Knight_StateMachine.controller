@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
-  damageDelaySeconds: 0.6
+  damageDelaySeconds: 0.7
   inflictEffect: {fileID: 11400000, guid: 3baf10542da03ee4599aecb7a463e2e4, type: 2}
 --- !u!1101 &-1819457809989531315
 AnimatorStateTransition:
