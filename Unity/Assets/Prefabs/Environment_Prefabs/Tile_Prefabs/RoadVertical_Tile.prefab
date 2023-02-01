@@ -72,5 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadVertical_Tile
       objectReference: {fileID: 0}
+    - target: {fileID: 6689879901533753891, guid: ef734e2a31dcf1e4c9dec7ef57756984,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 91e5bc2edad44a3428bb368e9f0ca814, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef734e2a31dcf1e4c9dec7ef57756984, type: 3}

@@ -72,5 +72,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TreePlot_Tile
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6689879901533753891, guid: ef734e2a31dcf1e4c9dec7ef57756984,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 17e276981c1072440a45db49cf04f45f, type: 2}
+    m_RemovedComponents:
+    - {fileID: 8176180284924352402, guid: ef734e2a31dcf1e4c9dec7ef57756984, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ef734e2a31dcf1e4c9dec7ef57756984, type: 3}
