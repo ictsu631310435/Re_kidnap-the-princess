@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c60e477c4925334f93e25d4737f71db, type: 3}
   m_Name: KnockBack_Sword1
   m_EditorClassIdentifier: 
-  type: KnockBack
+  type: Knock back
   requireSource: 1
   duration: 0.1
   tickRate: 0
   priority: 0
   indicator: {fileID: 3440546385907025495, guid: b8e28a518e8340742a72bb334d12e77f,
     type: 3}
+  disableMovement: 1
   force: 2

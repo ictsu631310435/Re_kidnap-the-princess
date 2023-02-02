@@ -153,6 +153,20 @@ public abstract class Enemy : Character
         GetComponent<Animator>().SetTrigger("Hurt");
     }
 
+    /// <summary>
+    /// Recover from all disable effect
+    /// </summary>
+    public virtual void RecoverFromDisableEffect()
+    {
+        StatusEffectManager effectManager = GetComponent<StatusEffectManager>();
+        int index = effectManager.StatusEffects.FindIndex(x => x.statusEffect.disableMovement);
+        // If can't find effect that disable movement
+        if (index == -1)
+        {
+            aiPath.canMove = true;
+        }
+    }
+
     public virtual void Die()
     {
         StopAllCoroutines();

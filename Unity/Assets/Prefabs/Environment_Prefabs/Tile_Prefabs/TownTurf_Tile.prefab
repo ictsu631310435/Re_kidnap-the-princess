@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 2805075498302745862, guid: ef734e2a31dcf1e4c9dec7ef57756984,
         type: 3}
       propertyPath: m_Name
-      value: TownTurf_Tile
+      value: Castle_Tile
       objectReference: {fileID: 0}
     - target: {fileID: 6351177646123291227, guid: ef734e2a31dcf1e4c9dec7ef57756984,
         type: 3}

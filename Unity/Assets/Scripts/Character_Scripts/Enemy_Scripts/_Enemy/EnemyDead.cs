@@ -19,8 +19,10 @@ public class EnemyDead : StateMachineBehaviour
         enemy.aiPath.maxSpeed = 0;
         enemy.aiDestination.target = null;
 
-        enemy.rbody.useGravity = false;
-        enemy.GetComponent<Collider>().enabled = false;
+        enemy.GetComponent<HealthController>().enabled = false;
+
+        //enemy.rbody.useGravity = false;
+        //enemy.GetComponent<Collider>().enabled = false;
 
         if (enemy.animator)
         {

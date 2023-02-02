@@ -8,7 +8,7 @@ public abstract class StatusEffect : ScriptableObject
 {
     [Header("Status Effect")]
     public string type;
-    public bool requireSource;
+    [HideInInspector] public bool requireSource;
     public float duration;
     [Tooltip("Tick rate for over time effect")]
     public float tickRate;
@@ -16,6 +16,8 @@ public abstract class StatusEffect : ScriptableObject
     [Tooltip("Priority for displaying indicator, higher numbers have greater priority")]
     public int priority;
     public GameObject indicator;
+
+    [HideInInspector] public bool disableMovement;
 
     // Base method for activating effect
     // Without source
@@ -26,4 +28,6 @@ public abstract class StatusEffect : ScriptableObject
 
     // Base method for deactivating effect
     public abstract void DeactivateEffect(GameObject target);
+
+    public virtual void TriggerResponse(GameObject target) { }
 }

@@ -10,6 +10,7 @@ public class Stun : StatusEffect
     public Stun()
     {
         type = "Stun";
+        disableMovement = true;
     }
 
     #region Inherited
@@ -17,23 +18,12 @@ public class Stun : StatusEffect
     // Without source
     public override void ActivateEffect(GameObject target)
     {
-        Rigidbody rigidbody = target.GetComponent<Rigidbody>();
-        rigidbody.velocity = Vector3.zero;
-
-        if (target.TryGetComponent(out Character character))
-        {
-            character.canAct = false;
-        }
-
-        if (target.TryGetComponent(out AIPath aIPath))
-        {
-            aIPath.canMove = false;
-        }
+        StunEffect(target);
     }
     // With source
     public override void ActivateEffect(GameObject target, GameObject source)
     {
-        ActivateEffect(target);
+        StunEffect(target);
     }
 
     // Method for deactivating effect
@@ -53,5 +43,22 @@ public class Stun : StatusEffect
         }
     }
     #endregion
+
+    public void StunEffect(GameObject target)
+    {
+        Rigidbody rigidbody = target.GetComponent<Rigidbody>();
+        rigidbody.velocity = Vector3.zero;
+
+        if (target.TryGetComponent(out Character character))
+        {
+            character.canAct = false;
+        }
+
+        if (target.TryGetComponent(out AIPath aIPath))
+        {
+            aIPath.canMove = false;
+        }
+    }
+
     #endregion
 }

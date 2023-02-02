@@ -46,7 +46,7 @@ public class EnemyAttack : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        enemy.aiPath.canMove = true;
+        enemy.RecoverFromDisableEffect();
     }
     #region Methods
 

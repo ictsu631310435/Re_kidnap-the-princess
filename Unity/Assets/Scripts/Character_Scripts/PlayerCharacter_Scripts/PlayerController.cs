@@ -185,16 +185,18 @@ public class PlayerController : Character
         Collider[] colliders = Physics.OverlapSphere(attackOrigin.position, attackRadius, damageLayer);
         foreach (Collider collider in colliders)
         {
-            HealthController _health = collider.gameObject.GetComponent<HealthController>();
-            _health.ChangeHealth(-attackDamage);
+            HealthController health = collider.gameObject.GetComponent<HealthController>();
+            if (health.enabled)
+            {
+                health.ChangeHealth(-attackDamage);
+                ChangeMana(1);
+            }
 
             if (inflictEffect != null)
             {
-                StatusEffectManager _effectManager = collider.gameObject.GetComponent<StatusEffectManager>();
-                _effectManager.ApplyEffect(inflictEffect, gameObject);
+                StatusEffectManager effectManager = collider.gameObject.GetComponent<StatusEffectManager>();
+                effectManager.ApplyEffect(inflictEffect, gameObject);
             }
-
-            ChangeMana(1);
         }
     }
 

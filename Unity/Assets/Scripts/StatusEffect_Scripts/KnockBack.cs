@@ -23,18 +23,30 @@ public class KnockBack : Stun
     {
         Vector3 direction = (target.transform.position - source.transform.position).normalized;
         KnockbackEffect(target, direction);
+
+        TriggerResponse(target);
     }
     // Without source
     public override void ActivateEffect(GameObject target)
     {
         KnockbackEffect(target, Vector3.back);
+
+        TriggerResponse(target);
+    }
+
+    public override void TriggerResponse(GameObject target)
+    {
+        if (target.TryGetComponent(out Enemy enemy))
+        {
+            enemy.Hurt();
+        }
     }
     #endregion
 
     // Method for KnockBack effect
     public void KnockbackEffect(GameObject target, Vector3 direction)
     {
-        base.ActivateEffect(target);
+        base.StunEffect(target);
 
         Rigidbody rigidbody = target.GetComponent<Rigidbody>();
         rigidbody.AddForce(direction * force, ForceMode.Impulse);
