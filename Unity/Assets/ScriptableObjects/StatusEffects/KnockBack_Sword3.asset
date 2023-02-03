@@ -20,4 +20,4 @@ MonoBehaviour:
   indicator: {fileID: 3440546385907025495, guid: b8e28a518e8340742a72bb334d12e77f,
     type: 3}
   disableMovement: 1
-  force: 3
+  force: 10
