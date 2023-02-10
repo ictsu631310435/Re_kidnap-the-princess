@@ -178,7 +178,7 @@ public class PlayerController : Character
         }
     }
 
-    public IEnumerator SwordAttackHit(float waitTime, StatusEffect inflictEffect)
+    public IEnumerator SwordAttackHit(Transform attackOrigin, float attackRadius, float waitTime, StatusEffect inflictEffect)
     {
         yield return new WaitForSeconds(waitTime);
 

@@ -36,9 +36,9 @@ public class KnockBack : Stun
 
     public override void TriggerResponse(GameObject target)
     {
-        if (target.TryGetComponent(out Enemy enemy))
+        if (target.TryGetComponent(out Character character))
         {
-            enemy.Hurt();
+            character.Hurt();
         }
     }
     #endregion

@@ -67,8 +67,8 @@ public class Projectile : MonoBehaviour
     {
         _shooter = shooter;
 
-        float zAngle = transform.rotation.eulerAngles.z;
-        transform.rotation = Quaternion.Euler(0, 0, zAngle + offsetAngle);
+        float yAngle = transform.rotation.eulerAngles.y;
+        transform.rotation = Quaternion.Euler(0, yAngle + offsetAngle, 0);
     }
     #endregion
 }

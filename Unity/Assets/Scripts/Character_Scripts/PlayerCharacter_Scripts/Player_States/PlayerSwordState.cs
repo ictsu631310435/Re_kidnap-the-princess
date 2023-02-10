@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class PlayerSwordState : StateMachineBehaviour
 {
-    private PlayerController _controller;
+    private PlayerController _playerControl;
 
-    public float delayTime;
+    public bool usePlayerAttackOrigin;
+
+    public bool usePlayerAttackRadius;
+    public float attackRadius;
+
+    public float hitDelaySeconds;
 
     public StatusEffect inflictEffect;
 
@@ -14,17 +19,19 @@ public class PlayerSwordState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("isWalking", false);
-        
-        _controller = animator.GetComponent<PlayerController>();
 
-        _controller.SwordAttackStart();
-        _controller.StartCoroutine(_controller.SwordAttackHit(delayTime, inflictEffect));
+        _playerControl = animator.GetComponent<PlayerController>();
+
+        _playerControl.SwordAttackStart();
+        Transform atkOrigin = usePlayerAttackOrigin ? _playerControl.attackOrigin : _playerControl.transform;
+        float atkRadius = usePlayerAttackRadius ? _playerControl.attackRadius : attackRadius;
+        _playerControl.StartCoroutine(_playerControl.SwordAttackHit(atkOrigin, atkRadius, hitDelaySeconds, inflictEffect));
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _controller.StopMove();
+        _playerControl.StopMove();
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

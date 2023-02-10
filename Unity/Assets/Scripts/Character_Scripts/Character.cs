@@ -45,9 +45,16 @@ public abstract class Character : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    //void Update()
+    //{
+    //    
+    //}
+
+    public virtual void Hurt()
     {
-        
+        CancelInvoke();
+        StopAllCoroutines();
+        GetComponent<Animator>().SetTrigger("Hurt");
     }
 
 #if UNITY_EDITOR

@@ -7,7 +7,7 @@ using UnityEngine;
 public class MaterialFlasher : MonoBehaviour
 {
     #region Data Members
-    [Header("# Can use both Mesh Renderers")]
+    [Header("# Can use both types of Mesh Renderers")]
     public MeshRenderer[] meshRenderers;
     public SkinnedMeshRenderer[] skinnedMeshRenderers;
 

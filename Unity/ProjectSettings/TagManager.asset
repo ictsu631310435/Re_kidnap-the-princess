@@ -16,13 +16,13 @@ TagManager:
   - 
   - Character
   - Ground
+  - 
   - Player
   - Enemy
   - Obstacle
   - PathfindingObstacle
   - Waypoint
-  - 
-  - 
+  - PlayerObstacle
   - 
   - 
   - 

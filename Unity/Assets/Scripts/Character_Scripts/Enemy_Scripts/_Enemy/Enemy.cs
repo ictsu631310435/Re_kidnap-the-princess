@@ -13,6 +13,8 @@ public abstract class Enemy : Character
     public float detectRange;
     public bool chasePlayerOnSpawned;
 
+    public float slowdownDistance;
+
     public Transform StatusIndicator;
     public GameObject alertParticle;
 
@@ -49,7 +51,7 @@ public abstract class Enemy : Character
 
         aiPath = GetComponent<AIPath>();
         aiPath.maxSpeed = moveSpeed;
-        aiPath.slowdownDistance = attackRange * 3;
+        aiPath.slowdownDistance = slowdownDistance + attackRange;
         aiPath.endReachedDistance = attackRange;
 
         aiDestination = GetComponent<AIDestinationSetter>();
@@ -65,21 +67,16 @@ public abstract class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-        // Get Player distance
         if (player)
         {
             playerDistance = Vector3.Distance(transform.position, player.position);
 
-            if (playerDistance <= detectRange)
+            if (playerDistance <= detectRange && !alert)
             {
-                if (!alert)
-                {
-                    alert = true;
-
-                    Instantiate(alertParticle, StatusIndicator);
-                }
+                alert = true;
+                Instantiate(alertParticle, StatusIndicator);
             }
-            else
+            else if (playerDistance > detectRange && alert)
             {
                 alert = false;
             }
@@ -146,12 +143,6 @@ public abstract class Enemy : Character
     //
     // With applying StatusEffect
     public abstract void Attack(StatusEffect inflictEffect);
-
-    public virtual void Hurt()
-    {
-        StopAllCoroutines();
-        GetComponent<Animator>().SetTrigger("Hurt");
-    }
 
     /// <summary>
     /// Recover from all disable effect

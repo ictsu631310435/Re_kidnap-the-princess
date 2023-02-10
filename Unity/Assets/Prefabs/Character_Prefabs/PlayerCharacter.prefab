@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   affectLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 4096
   inflictEffect: {fileID: 11400000, guid: 7d272526032ef364dac5511778c08932, type: 2}
 --- !u!1 &7548780708266386082
 GameObject:
@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 8188416214879714739}
   - component: {fileID: 231672968462306470}
   - component: {fileID: 7434081553945975043}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: PlayerCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -325,12 +325,12 @@ MonoBehaviour:
   attackRadius: 1.2
   damageLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 4096
   character: {fileID: 4838934977336821144}
   rbody: {fileID: 0}
   animator: {fileID: 0}
   canAct: 0
-  dashSpeed: 25
+  dashSpeed: 20
   dashDuration: 0.2
   dashCollider: {fileID: 1834966952123652663}
   RotationSmoothTime: 0.12
@@ -435,7 +435,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 623537558327400936}
         m_TargetAssemblyTypeName: MaterialFlasher, Assembly-CSharp
         m_MethodName: Flash
         m_Mode: 1
@@ -538,15 +538,45 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: fadcd9f3e1e543f4fae431a354054996, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e53c33667194e34b92eeb89464af971, type: 3}
+--- !u!137 &1942137202835547860 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 735088459742572098, guid: 2e53c33667194e34b92eeb89464af971,
+    type: 3}
+  m_PrefabInstance: {fileID: 1207057541111253142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4838934977336821144 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6045816183422930190, guid: 2e53c33667194e34b92eeb89464af971,
     type: 3}
   m_PrefabInstance: {fileID: 1207057541111253142}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &623537558327400936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4838934977336821144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab3da1a8ae6a574295d6b7765811144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderers: []
+  skinnedMeshRenderers:
+  - {fileID: 1942137202835547860}
+  - {fileID: 8857292084895250149}
+  flashMaterial: {fileID: 2100000, guid: 4effeaa9c08e1ef41b8e2fe708e01445, type: 2}
+  flashDuration: 0.1
 --- !u!4 &5218696794823696162 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6389725401430300596, guid: 2e53c33667194e34b92eeb89464af971,
+    type: 3}
+  m_PrefabInstance: {fileID: 1207057541111253142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &8857292084895250149 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7650270278494977651, guid: 2e53c33667194e34b92eeb89464af971,
     type: 3}
   m_PrefabInstance: {fileID: 1207057541111253142}
   m_PrefabAsset: {fileID: 0}

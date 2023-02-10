@@ -34,13 +34,13 @@ public class KnightEnemy : Enemy
     {
         base.Start();
 
-        aiPath.slowdownDistance = standbyRange * 3;
+        aiPath.slowdownDistance = slowdownDistance + standbyRange;
         aiPath.endReachedDistance = standbyRange;
 
         // Create a waypoint
         waypoint = Instantiate(waypointPrefab).transform;
         waypoint.parent = transform.parent;
-        waypoint.position = transform.position;
+        waypoint.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
         // Rename to have owner's name attached
         waypoint.name = gameObject.name + "'s Waypoint";
 
@@ -49,24 +49,23 @@ public class KnightEnemy : Enemy
 
     #region Methods
     // Method for detecting other knights in combat
-    #region Inherited
+    #region Implemented
     // Method for attacking (Melee)
     public override void Attack(StatusEffect inflictEffect)
     {
         // Array of all Colliders in targetLayer caught in Range.
-        Collider[] colliders = Physics.OverlapSphere(attackOrigin.position, attackRadius, damageLayer);
-        foreach (var collider in colliders)
+        Collider[] hitColliders = Physics.OverlapSphere(attackOrigin.position, attackRadius, damageLayer);
+        // Deal damage and apply inflictEffect to every hitColliders
+        foreach (Collider hitCollider in hitColliders)
         {
-            // Check for HealthSystem
-            if (collider.gameObject.TryGetComponent(out HealthController _health))
+            // Check for HealthSystem to deal damage
+            if (hitCollider.gameObject.TryGetComponent(out HealthController _health))
             {
-                // Deal damage
                 _health.ChangeHealth(-attackDamage);
             }
-            // Check for StatusEffectHandler
-            if (collider.gameObject.TryGetComponent(out StatusEffectManager _effectHandler))
+            // Check for StatusEffectHandler to apply inflictEffect
+            if (hitCollider.gameObject.TryGetComponent(out StatusEffectManager _effectHandler))
             {
-                // Apply inflictEffect
                 _effectHandler.ApplyEffect(inflictEffect, gameObject);
             }
         }
@@ -97,7 +96,7 @@ public class KnightEnemy : Enemy
         }
     }
 
-    // Unused
+    // Not Implemented
     public override void Attack()
     {
         throw new System.NotImplementedException();

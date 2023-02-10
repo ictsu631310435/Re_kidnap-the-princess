@@ -21,7 +21,7 @@ public class KnightChase : StateMachineBehaviour
             _knight.aiPath.maxSpeed = _knight.moveSpeed;
 
             // If not entered combat, slow down and stop when target in standbyRange
-            _knight.aiPath.slowdownDistance = _knight.standbyRange * 3;
+            _knight.aiPath.slowdownDistance = _knight.slowdownDistance + _knight.standbyRange;
             _knight.aiPath.endReachedDistance = _knight.standbyRange;
 
             _knight.animator.SetBool("isWalking", true);
@@ -32,7 +32,7 @@ public class KnightChase : StateMachineBehaviour
             _knight.aiPath.maxSpeed = _knight.engageMoveSpeed;
 
             // If entered combat, slow down and stop when target in attackRange
-            _knight.aiPath.slowdownDistance = _knight.attackRange * 3;
+            _knight.aiPath.slowdownDistance = _knight.slowdownDistance + _knight.attackRange;
             _knight.aiPath.endReachedDistance = _knight.attackRange;
 
             _knight.animator.SetBool("isWalking", false);
@@ -45,7 +45,7 @@ public class KnightChase : StateMachineBehaviour
     {
         if (_knight.aiDestination.target == _knight.player && _knight.playerDistance > _knight.detectRange)
         {
-            _knight.aiPath.maxSpeed = _knight.engageMoveSpeed;
+            //_knight.aiPath.maxSpeed = _knight.moveSpeed * 2;
             _knight.aiDestination.target = null;
 
             _knight.inCombat = false;

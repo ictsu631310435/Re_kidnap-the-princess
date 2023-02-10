@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 2857451592237313282}
   - component: {fileID: 4852901163626788873}
   - component: {fileID: 2327054534216354524}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: KnightEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,13 +93,14 @@ MonoBehaviour:
   attackRadius: 0.75
   damageLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 3072
   character: {fileID: 4538387247273761058}
   rbody: {fileID: 0}
   animator: {fileID: 0}
   canAct: 0
-  detectRange: 10
+  detectRange: 12
   chasePlayerOnSpawned: 0
+  slowdownDistance: 4
   StatusIndicator: {fileID: 6481356018388760992}
   alertParticle: {fileID: 3440546385907025495, guid: f5dbe73cb2198ad4a8ccff31698a4980,
     type: 3}
@@ -111,16 +112,16 @@ MonoBehaviour:
   alert: 0
   aiPath: {fileID: 0}
   aiDestination: {fileID: 0}
-  standbyRange: 5
+  standbyRange: 8
   allyLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 4096
   maxInCombat: 2
   waypointPrefab: {fileID: 8711219363742180896, guid: 9754f0c2a9ccb4b498e4c07d2d99a2d7,
     type: 3}
   minTimeBtwRepos: 1
   maxTimeBtwRepos: 3
-  engageMoveSpeed: 10
+  engageMoveSpeed: 15
   inCombat: 0
   inCombatNum: 0
   waypoint: {fileID: 0}
@@ -363,6 +364,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3619485585069065886}
     m_Modifications:
+    - target: {fileID: 2623886651089899469, guid: 5c6476bdf59890d42b984b28d0540f2a,
+        type: 3}
+      propertyPath: uniqueID
+      value: 2762030307379017973
+      objectReference: {fileID: 0}
     - target: {fileID: 2813365615784423603, guid: 5c6476bdf59890d42b984b28d0540f2a,
         type: 3}
       propertyPath: m_RootOrder
