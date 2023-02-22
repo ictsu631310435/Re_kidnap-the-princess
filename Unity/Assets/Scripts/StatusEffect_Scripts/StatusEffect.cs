@@ -13,9 +13,9 @@ public abstract class StatusEffect : ScriptableObject
     [Tooltip("Tick rate for over time effect")]
     public float tickRate;
 
+    public GameObject indicator;
     [Tooltip("Priority for displaying indicator, higher numbers have greater priority")]
     public int priority;
-    public GameObject indicator;
 
     [HideInInspector] public bool disableMovement;
 

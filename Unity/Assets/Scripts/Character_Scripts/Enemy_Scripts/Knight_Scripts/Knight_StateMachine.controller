@@ -608,6 +608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e00db19e140c2b41b5c4f15350bcf9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalDetectRange: 12
+  runDetectRange: 4
 --- !u!1101 &8008297839102124911
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

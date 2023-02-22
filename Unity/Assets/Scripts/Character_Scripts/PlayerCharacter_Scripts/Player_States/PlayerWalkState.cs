@@ -65,7 +65,7 @@ public class PlayerWalkState : StateMachineBehaviour
     {
         animator.SetBool("isWalking", false);
 
-        if (_player.animator && !_player.canAct)
+        if (_player.animator)
         {
             _player.animator.SetBool("isWalking", false);
         }

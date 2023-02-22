@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 2327054534216354524}
   m_Layer: 12
   m_Name: MageEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274086b6501eb5e4786bcf5f0eef703b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 3
   attackDamage: 0
   attackOrigin: {fileID: 3619485584870916521}
   attackRadius: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
     type: 3}
   _iAngle: 0
   waypoint: {fileID: 0}
-  nextReposTime: 0
+  reposition: 0
 --- !u!136 &8178492674281509653
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -364,7 +364,7 @@ PrefabInstance:
     - target: {fileID: 2623886651089899469, guid: 5c6476bdf59890d42b984b28d0540f2a,
         type: 3}
       propertyPath: uniqueID
-      value: 1694566036619654515
+      value: 7413238056348592065
       objectReference: {fileID: 0}
     - target: {fileID: 2813365615784423603, guid: 5c6476bdf59890d42b984b28d0540f2a,
         type: 3}
@@ -594,6 +594,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3619485585069065886}
     m_Modifications:
+    - target: {fileID: 2436091486544913082, guid: 0ad349f90b78d4944b814e00f9045b4e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fb040fe47e2ad634da9f85f2330cd40b, type: 2}
     - target: {fileID: 2457863669775595662, guid: 0ad349f90b78d4944b814e00f9045b4e,
         type: 3}
       propertyPath: m_Name

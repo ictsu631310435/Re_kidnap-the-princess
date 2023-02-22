@@ -91,7 +91,10 @@ public class StatusEffectManager : MonoBehaviour
                 _newTickTime = StatusEffects[i].nextTickTime;
 
                 // Create new indicator
-                StatusEffects[i].indicator = Instantiate(StatusEffects[i].statusEffect.indicator, indicator);
+                if (StatusEffects[i].statusEffect.indicator)
+                {
+                    StatusEffects[i].indicator = Instantiate(StatusEffects[i].statusEffect.indicator, indicator);
+                }
             }
             // Tick Activation
             else if (StatusEffects[i].statusEffect.tickRate > 0 &&
@@ -110,8 +113,11 @@ public class StatusEffectManager : MonoBehaviour
             StatusEffects[i].nextTickTime = _newTickTime;
 
             // Update indicator display
-            bool isTop = StatusEffects[i].statusEffect.priority == _topPriority;
-            StatusEffects[i].indicator.SetActive(isTop);
+            if (StatusEffects[i].statusEffect.indicator)
+            {
+                bool isTop = StatusEffects[i].statusEffect.priority == _topPriority;
+                StatusEffects[i].indicator.SetActive(isTop);
+            }
 
             // Remove a StatusEffect when it expired 
             if (StatusEffects[i].duration <= 0)

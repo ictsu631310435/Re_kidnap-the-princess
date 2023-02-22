@@ -300,7 +300,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f5726314e578ed14ca34c0526a230cc2,
         type: 3}
       propertyPath: m_Name
-      value: Mage
+      value: MageCharacter
       objectReference: {fileID: 0}
     - target: {fileID: 1393575031235288660, guid: f5726314e578ed14ca34c0526a230cc2,
         type: 3}
@@ -525,7 +525,7 @@ Animator:
   m_GameObject: {fileID: 2457863669775595662}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fb040fe47e2ad634da9f85f2330cd40b, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

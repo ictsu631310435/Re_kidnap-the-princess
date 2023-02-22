@@ -8,6 +8,9 @@ public class KnightChase : StateMachineBehaviour
 {
     private KnightEnemy _knight;
 
+    public float normalDetectRange;
+    public float runDetectRange;
+
     #region Unity Callbacks
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,6 +27,8 @@ public class KnightChase : StateMachineBehaviour
             _knight.aiPath.slowdownDistance = _knight.slowdownDistance + _knight.standbyRange;
             _knight.aiPath.endReachedDistance = _knight.standbyRange;
 
+            //_knight.detectRange = normalDetectRange;
+
             _knight.animator.SetBool("isWalking", true);
             _knight.animator.SetBool("isRunning", false);
         }
@@ -35,6 +40,8 @@ public class KnightChase : StateMachineBehaviour
             _knight.aiPath.slowdownDistance = _knight.slowdownDistance + _knight.attackRange;
             _knight.aiPath.endReachedDistance = _knight.attackRange;
 
+            //_knight.detectRange = runDetectRange;
+
             _knight.animator.SetBool("isWalking", false);
             _knight.animator.SetBool("isRunning", true);
         }
@@ -43,9 +50,8 @@ public class KnightChase : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (_knight.aiDestination.target == _knight.player && _knight.playerDistance > _knight.detectRange)
+        if (_knight.aiDestination.target == _knight.player && _knight.playerDistance > _knight.detectRange / 3)
         {
-            //_knight.aiPath.maxSpeed = _knight.moveSpeed * 2;
             _knight.aiDestination.target = null;
 
             _knight.inCombat = false;
@@ -85,6 +91,8 @@ public class KnightChase : StateMachineBehaviour
     {
         // Make sure to not set target to anything when exit state
         _knight.aiDestination.target = null;
+
+        _knight.detectRange = normalDetectRange;
 
         // Make sure isChasing = false when exit state
         animator.SetBool("isChasing", false);

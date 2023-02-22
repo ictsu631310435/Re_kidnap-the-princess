@@ -49,14 +49,18 @@ public abstract class Enemy : Character
             playerDistance = Vector2.Distance(transform.position, player.position);
         }
 
+        
         aiPath = GetComponent<AIPath>();
-        aiPath.maxSpeed = moveSpeed;
-        aiPath.slowdownDistance = slowdownDistance + attackRange;
-        aiPath.endReachedDistance = attackRange;
+        if (aiPath)
+        {
+            aiPath.maxSpeed = moveSpeed;
+            aiPath.slowdownDistance = slowdownDistance + attackRange;
+            aiPath.endReachedDistance = attackRange;
+        }
 
         aiDestination = GetComponent<AIDestinationSetter>();
         // Set target to Player if set to chase Player after spawned
-        if (chasePlayerOnSpawned)
+        if (aiDestination & chasePlayerOnSpawned)
         {
             aiDestination.target = player;
         }
@@ -115,7 +119,8 @@ public abstract class Enemy : Character
         // Caculate rotation this enemy is going to
         Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
         // Rotate this enemy toward toRotation
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, aiPath.rotationSpeed * Time.deltaTime);
+        float rotationSpeed = aiPath ? aiPath.rotationSpeed : 360f;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
     }
 
     // Method for getting random position around player
