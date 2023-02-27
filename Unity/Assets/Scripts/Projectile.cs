@@ -37,13 +37,12 @@ public class Projectile : MonoBehaviour
             // If collided with enemy, deal damage and inflict effect
             if (1 << collision.gameObject.layer == damageLayer.value)
             {
-                // Get HealthController
                 HealthController _health = collision.gameObject.GetComponent<HealthController>();
                 // Inflict attackDamage
                 _health.ChangeHealth(-attackDamage);
+
                 if (inflictEffect != null)
                 {
-                    // Get StatusEffectManager
                     StatusEffectManager _effectManager = collision.gameObject.GetComponent<StatusEffectManager>();
                     // Inflict StatusEffect
                     _effectManager.ApplyEffect(inflictEffect, _shooter);

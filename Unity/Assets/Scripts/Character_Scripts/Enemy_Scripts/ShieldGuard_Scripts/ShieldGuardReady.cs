@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldGuardIdle : StateMachineBehaviour
+public class ShieldGuardReady : StateMachineBehaviour
 {
     private ShieldGuardEnemy shieldGuard;
 
@@ -11,16 +11,13 @@ public class ShieldGuardIdle : StateMachineBehaviour
     {
         shieldGuard = animator.GetComponent<ShieldGuardEnemy>();
 
-        shieldGuard.rbody.velocity = Vector3.zero;
+        shieldGuard.animator.SetTrigger("GetReady");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (shieldGuard.playerDistance <= shieldGuard.detectRange)
-        {
-            animator.SetTrigger("Charge");
-        }    
+        shieldGuard.LookAt(shieldGuard.player);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

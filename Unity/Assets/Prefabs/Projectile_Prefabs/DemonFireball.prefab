@@ -42,11 +42,6 @@ PrefabInstance:
       propertyPath: damageLayer.m_Bits
       value: 4096
       objectReference: {fileID: 0}
-    - target: {fileID: 6170219638855596524, guid: eb9477560a5d96345aa9e02dcc403934,
-        type: 3}
-      propertyPath: obstacleLayer.m_Bits
-      value: 73728
-      objectReference: {fileID: 0}
     - target: {fileID: 6941605098762218578, guid: eb9477560a5d96345aa9e02dcc403934,
         type: 3}
       propertyPath: LightsModule.intensityCurve.scalar

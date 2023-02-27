@@ -71,10 +71,15 @@ public class KnightEnemy : Enemy
         }
     }
 
+    public override void Hurt()
+    {
+        base.Hurt();
+        InvokeRepeating(nameof(DetectCombat), 0f, 0.25f);
+    }
+
     public override void Die()
     {
         base.Die();
-
         Destroy(waypoint.gameObject, 2f);
     }
     #endregion

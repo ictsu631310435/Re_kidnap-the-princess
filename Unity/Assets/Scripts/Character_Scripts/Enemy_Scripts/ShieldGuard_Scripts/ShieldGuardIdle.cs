@@ -1,39 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class ShieldGuardCharge : StateMachineBehaviour
+public class ShieldGuardIdle : StateMachineBehaviour
 {
     private ShieldGuardEnemy shieldGuard;
-
-    public float remainDuration;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         shieldGuard = animator.GetComponent<ShieldGuardEnemy>();
-
-        Vector3 heading = shieldGuard.player.position - shieldGuard.transform.position;
-        Vector3 direction = heading.normalized;
-        shieldGuard.rbody.velocity = direction * shieldGuard.moveSpeed;
-
-        shieldGuard.remainChargeDuration = shieldGuard.chargeDuration;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (shieldGuard.remainChargeDuration > 0f)
+        if (shieldGuard.playerDistance <= shieldGuard.detectRange)
         {
-            shieldGuard.remainChargeDuration -= Time.deltaTime;
-        }
-
-        if (shieldGuard.remainChargeDuration <= 0f)
-        {
-            //animator.SetBool("isHit", false);
-            //shieldGuard.animator.SetBool("isHit", false);
-        }
+            animator.SetTrigger("GetReady");
+        }    
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

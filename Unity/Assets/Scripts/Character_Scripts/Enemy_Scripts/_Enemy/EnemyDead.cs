@@ -1,3 +1,4 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,27 +9,29 @@ public class EnemyDead : StateMachineBehaviour
 {
     public float destroyDelaySeconds;
 
-    [HideInInspector] public Enemy enemy;
+    private Enemy _enemy;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        enemy = animator.GetComponent<Enemy>();
+        Destroy(animator.gameObject, destroyDelaySeconds);
 
-        enemy.aiPath.canMove = false;
-        enemy.aiPath.maxSpeed = 0;
-        enemy.aiDestination.target = null;
+        _enemy = animator.GetComponent<Enemy>();
 
-        enemy.GetComponent<HealthController>().enabled = false;
-
-        //enemy.rbody.useGravity = false;
-        //enemy.GetComponent<Collider>().enabled = false;
-
-        if (enemy.animator)
+        if (_enemy.aiDestination)
         {
-            enemy.animator.SetBool("isDead", true);
+            _enemy.aiDestination.target = null;
         }
 
-        Destroy(animator.gameObject, destroyDelaySeconds);
+        if (_enemy.aiPath)
+        {
+            _enemy.aiPath.canMove = false;
+            _enemy.aiPath.maxSpeed = 0;
+        }
+
+        if (_enemy.animator)
+        {
+            _enemy.animator.SetBool("isDead", true);
+        }
     }
 }

@@ -13,11 +13,16 @@ public class HealthController : MonoBehaviour
     public int maxHealth;
 
     [Tooltip("Current health of the character")]
-    [field: SerializeField] public int CurrentHealth { get; private set; } // Other can readonly
+    [field: SerializeField]
+    public int CurrentHealth { get; private set; } // Other can readonly
 
-    // Events
     public UnityEvent<int> OnHealthInitialized;
+
+    [field: SerializeField]
+    public bool Invulnerable { get; set; }
+
     public UnityEvent<int> OnHealthChanged;
+    
     public UnityEvent OnHealthDepleted;
     #endregion
 
@@ -37,17 +42,24 @@ public class HealthController : MonoBehaviour
     // Method for change CurrentHealth's value
     public void ChangeHealth(int amount)
     {
-        CurrentHealth += amount;
-        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, maxHealth); // Health cannot go below 0
-
-        // Invoke HealthChanged event
-        OnHealthChanged?.Invoke(CurrentHealth);
-
-        // Check if Health reach 0
-        if (CurrentHealth == 0)
+        if (Invulnerable)
         {
-            // Invoke HealthDepleted event
-            OnHealthDepleted?.Invoke();
+            return;
+        }
+        else
+        {
+            CurrentHealth += amount;
+            CurrentHealth = Mathf.Clamp(CurrentHealth, 0, maxHealth); // Health cannot go below 0
+
+            // Invoke HealthChanged event
+            OnHealthChanged?.Invoke(CurrentHealth);
+
+            if (CurrentHealth == 0)
+            {
+                // Invoke HealthDepleted event
+                OnHealthDepleted?.Invoke();
+                Invulnerable = true;
+            }
         }
     }
     #endregion

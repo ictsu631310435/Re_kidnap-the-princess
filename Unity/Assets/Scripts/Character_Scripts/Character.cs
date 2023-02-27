@@ -57,6 +57,11 @@ public abstract class Character : MonoBehaviour
         GetComponent<Animator>().SetTrigger("Hurt");
     }
 
+    public virtual bool isDamageable()
+    {
+        return true;
+    }
+
 #if UNITY_EDITOR
     public virtual void OnDrawGizmos()
     {

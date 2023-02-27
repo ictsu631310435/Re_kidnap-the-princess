@@ -97,4 +97,16 @@ public class PlayerInputsReceiver : MonoBehaviour
     {
         heal = newHealState;
     }
+
+    public void ResetInputValues()
+    {
+        move = Vector2.zero;
+        dash = false;
+        sword = false;
+        magic = false;
+        //mousePosition = Vector2.zero;
+        lookDirection = Vector3.zero;
+        lookRotation = Quaternion.identity;
+        heal = false;
+    }
 }

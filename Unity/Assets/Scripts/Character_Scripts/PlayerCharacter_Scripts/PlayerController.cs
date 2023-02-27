@@ -186,11 +186,11 @@ public class PlayerController : Character
         foreach (Collider collider in colliders)
         {
             HealthController health = collider.gameObject.GetComponent<HealthController>();
-            if (health.enabled)
+            if (!health.Invulnerable)
             {
-                health.ChangeHealth(-attackDamage);
-                ChangeMana(1);
+                ChangeMana(+1);
             }
+            health.ChangeHealth(-attackDamage);
 
             if (inflictEffect != null)
             {

@@ -165,8 +165,10 @@ public abstract class Enemy : Character
 
     public virtual void Die()
     {
-        StopAllCoroutines();
         GetComponent<Animator>().SetBool("isDead", true);
+
+        CancelInvoke();
+        StopAllCoroutines();
     }
     #endregion
 }
