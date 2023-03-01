@@ -144,10 +144,10 @@ public abstract class Enemy : Character
 
     // Base method for attacking
     // Without applying StatusEffect
-    public abstract void Attack();
+    public virtual void Attack() { }
     //
     // With applying StatusEffect
-    public abstract void Attack(StatusEffect inflictEffect);
+    public virtual void Attack(StatusEffect inflictEffect) { }
 
     /// <summary>
     /// Recover from all disable effect

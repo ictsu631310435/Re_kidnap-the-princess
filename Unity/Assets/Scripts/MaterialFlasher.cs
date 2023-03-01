@@ -101,5 +101,19 @@ public class MaterialFlasher : MonoBehaviour
         // Reset after finished
         _flashCoroutines[i] = null;
     }
+
+    public void FindMeshRenderers()
+    {
+        meshRenderers = GetComponentsInChildren<MeshRenderer>();
+
+        skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+    }
+
+    public void ResetMeshRenderers()
+    {
+        meshRenderers = null;
+
+        skinnedMeshRenderers = null;
+    }
     #endregion
 }

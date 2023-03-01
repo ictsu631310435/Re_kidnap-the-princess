@@ -13,6 +13,8 @@ public class EnemyAttack : StateMachineBehaviour
     public float damageDelaySeconds;
 
     public StatusEffect inflictEffect;
+
+    public bool lookAtPlayer;
     #endregion
 
     #region Unity Callbacks
@@ -40,6 +42,19 @@ public class EnemyAttack : StateMachineBehaviour
         if (enemy.animator)
         {
             enemy.animator.SetTrigger("Attack");
+        }
+    }
+
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (!lookAtPlayer)
+        {
+            return;
+        }
+        else
+        {
+            enemy.LookAt(enemy.player);
         }
     }
 
