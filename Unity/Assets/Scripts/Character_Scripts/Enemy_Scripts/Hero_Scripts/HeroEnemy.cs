@@ -1,3 +1,4 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -11,12 +12,24 @@ public class HeroEnemy : Enemy
 
     public GameObject swordwavePrefab;
 
+    public int retaliateThreshold;
+    public int retaliateCounter;
+
+    public int retaliateBulletNum;
+    public float startAngle;
+    public float angleOffset;
+
     public enum Action
     {
-        None, CombatStance, ChasePlayer, MeleeAttack, RangedAttack
+        None, CombatStance, ChasePlayer, MeleeAttack, RangedAttack, Swordwave3x
     }
     public Action currentTask;
     public Action nextTask;
+
+    void Awake()
+    {
+        aiPath = GetComponent<AIPath>();
+    }
 
     // Start is called before the first frame update
     //void Start()
@@ -35,6 +48,20 @@ public class HeroEnemy : Enemy
     {
         GameObject swordwave = Instantiate(swordwavePrefab, attackOrigin.position, transform.rotation);
         swordwave.GetComponent<Projectile>().Initialize(gameObject);
+        /*if (retaliateCounter < retaliateThreshold)
+        {
+            GameObject swordwave = Instantiate(swordwavePrefab, attackOrigin.position, transform.rotation);
+            swordwave.GetComponent<Projectile>().Initialize(gameObject);
+        }
+        else
+        {
+            retaliateCounter = 0;
+            for (int i = 0; i < retaliateBulletNum; i++)
+            {
+                GameObject swordwave = Instantiate(swordwavePrefab, attackOrigin.position, transform.rotation);
+                swordwave.GetComponent<Projectile>().Initialize(gameObject, startAngle + (angleOffset * i));
+            }
+        }*/
     }
 
     public override void Attack(StatusEffect inflictEffect)
@@ -55,6 +82,27 @@ public class HeroEnemy : Enemy
                 _effectHandler.ApplyEffect(inflictEffect, gameObject);
             }
         }
+    }
+
+    public void Swordwave3x()
+    {
+        retaliateCounter = 0;
+        for (int i = 0; i < retaliateBulletNum; i++)
+        {
+            GameObject swordwave = Instantiate(swordwavePrefab, attackOrigin.position, transform.rotation);
+            swordwave.GetComponent<Projectile>().Initialize(gameObject, startAngle + (angleOffset * i));
+        }
+    }
+
+    public override void Hurt()
+    {
+        retaliateCounter++;
+        retaliateCounter = Mathf.Clamp(retaliateCounter, 0, retaliateThreshold);
+        if (retaliateCounter >= retaliateThreshold)
+        {
+            return;
+        }
+        base.Hurt();
     }
     #endregion
 }

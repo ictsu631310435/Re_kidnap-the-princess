@@ -38,7 +38,7 @@ public class HeroCombat : StateMachineBehaviour
         }
         else
         {
-            if (_hero.playerDistance > _hero.rangeAttackThreshold)
+            if (_hero.playerDistance >= _hero.rangeAttackThreshold)
             {
                 _hero.nextTask = HeroEnemy.Action.RangedAttack;
                 animator.SetTrigger("RangedAttack");
@@ -65,6 +65,12 @@ public class HeroCombat : StateMachineBehaviour
         {
             _hero.nextTask = HeroEnemy.Action.ChasePlayer;
             TransitionChase();
+        }
+
+        if (_hero.retaliateCounter >= _hero.retaliateThreshold)
+        {
+            _hero.nextTask = HeroEnemy.Action.Swordwave3x;
+            animator.SetTrigger("Swordwave3x");
         }
     }
 
