@@ -14,7 +14,7 @@ public class HealthController : MonoBehaviour
 
     [Tooltip("Current health of the character")]
     [field: SerializeField]
-    public int CurrentHealth { get; private set; } // Other can readonly
+    public int CurrentHealth { get; private set; }
 
     public UnityEvent<int> OnHealthInitialized;
 

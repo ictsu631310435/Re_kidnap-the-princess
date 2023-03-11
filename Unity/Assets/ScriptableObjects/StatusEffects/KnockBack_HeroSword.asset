@@ -20,4 +20,4 @@ MonoBehaviour:
     type: 3}
   priority: 0
   disableMovement: 1
-  force: 3
+  force: 5

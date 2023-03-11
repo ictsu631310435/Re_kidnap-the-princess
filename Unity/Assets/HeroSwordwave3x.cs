@@ -46,18 +46,6 @@ public class HeroSwordwave3x : StateMachineBehaviour
         _hero.RecoverFromDisableEffect();
     }
 
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
-
     private IEnumerator DelayEmit(float waitSeconds)
     {
         // Wait for (waitSeconds)

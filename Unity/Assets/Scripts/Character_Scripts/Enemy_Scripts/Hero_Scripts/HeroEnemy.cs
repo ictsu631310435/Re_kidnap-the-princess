@@ -19,12 +19,24 @@ public class HeroEnemy : Enemy
     public float startAngle;
     public float angleOffset;
 
+    public GameObject[] unpackGameObjects;
+
+    public GameObject backupSpawner;
+    [Range(0.0f, 1.0f)]
+    public float callBackUpThreshold;
+
+    public GameObject nextPhaseCutscene;
+
     public enum Action
     {
-        None, CombatStance, ChasePlayer, MeleeAttack, RangedAttack, Swordwave3x
+        None, CombatStance, ChasePlayer, MeleeAttack, RangedAttack, Swordwave3x, CallBackUp
     }
+    [Header("Info")]
     public Action currentTask;
     public Action nextTask;
+
+    public bool canCallBackUp;
+    public bool isBackUpCalled;
 
     void Awake()
     {
@@ -32,16 +44,32 @@ public class HeroEnemy : Enemy
     }
 
     // Start is called before the first frame update
-    //void Start()
-    //{
-    //    
-    //}
+    public override void Start()
+    {
+        base.Start();
+
+        foreach (GameObject item in unpackGameObjects)
+        {
+            item.transform.parent = transform.parent;
+        }
+    }
 
     // Update is called once per frame
     //void Update()
     //{
     //    
     //}
+
+    void OnDestroy()
+    {
+        foreach (GameObject item in unpackGameObjects)
+        {
+            if (item != nextPhaseCutscene)
+            {
+                Destroy(item);
+            }
+        }
+    }
 
     #region Methods
     public override void Attack()
@@ -84,6 +112,28 @@ public class HeroEnemy : Enemy
         }
     }
 
+    public override void Hurt()
+    {
+        retaliateCounter++;
+        retaliateCounter = Mathf.Clamp(retaliateCounter, 0, retaliateThreshold);
+
+        if (!isBackUpCalled)
+        {
+            HealthController healthController = GetComponent<HealthController>();
+            if (healthController.CurrentHealth <= (healthController.maxHealth * callBackUpThreshold))
+            {
+                canCallBackUp = true;
+            }
+        }
+
+        if (retaliateCounter >= retaliateThreshold || canCallBackUp)
+        {
+            return;
+        }
+
+        base.Hurt();
+    }
+
     public void Swordwave3x()
     {
         retaliateCounter = 0;
@@ -94,15 +144,11 @@ public class HeroEnemy : Enemy
         }
     }
 
-    public override void Hurt()
+    public void ActivateBackupSpawner()
     {
-        retaliateCounter++;
-        retaliateCounter = Mathf.Clamp(retaliateCounter, 0, retaliateThreshold);
-        if (retaliateCounter >= retaliateThreshold)
-        {
-            return;
-        }
-        base.Hurt();
+        isBackUpCalled = true;
+        canCallBackUp = false;
+        backupSpawner.SetActive(true);
     }
     #endregion
 }

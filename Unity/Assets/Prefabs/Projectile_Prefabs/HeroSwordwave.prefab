@@ -55,7 +55,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   attackDamage: 1
-  inflictEffect: {fileID: 11400000, guid: a4ce4871247958444bd8bca9deddb52c, type: 2}
+  inflictEffect: {fileID: 11400000, guid: 9e3c38a662ac61a49907584e40cfdc87, type: 2}
 --- !u!54 &500300838188206822
 Rigidbody:
   m_ObjectHideFlags: 0

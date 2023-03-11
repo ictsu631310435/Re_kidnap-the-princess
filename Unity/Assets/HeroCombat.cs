@@ -35,6 +35,29 @@ public class HeroCombat : StateMachineBehaviour
         if (_remainingDuration > 0.0f)
         {
             _remainingDuration -= Time.deltaTime;
+
+            if (_hero.retaliateCounter >= _hero.retaliateThreshold)
+            {
+                _hero.nextTask = HeroEnemy.Action.Swordwave3x;
+                animator.SetTrigger("Swordwave3x");
+            }
+
+            if (_hero.canCallBackUp && !_hero.isBackUpCalled)
+            {
+                Debug.Log("call backup");
+                _hero.nextTask = HeroEnemy.Action.CallBackUp;
+                animator.SetTrigger("CallBackup");
+            }
+
+            if (_hero.playerDistance <= _hero.detectRange)
+            {
+                _hero.LookAt(_hero.player);
+            }
+            else
+            {
+                _hero.nextTask = HeroEnemy.Action.ChasePlayer;
+                TransitionChase();
+            }
         }
         else
         {
@@ -55,22 +78,6 @@ public class HeroCombat : StateMachineBehaviour
                     TransitionChase();
                 }
             }
-        }
-
-        if (_hero.playerDistance <= _hero.detectRange)
-        {
-            _hero.LookAt(_hero.player);
-        }
-        else
-        {
-            _hero.nextTask = HeroEnemy.Action.ChasePlayer;
-            TransitionChase();
-        }
-
-        if (_hero.retaliateCounter >= _hero.retaliateThreshold)
-        {
-            _hero.nextTask = HeroEnemy.Action.Swordwave3x;
-            animator.SetTrigger("Swordwave3x");
         }
     }
 
