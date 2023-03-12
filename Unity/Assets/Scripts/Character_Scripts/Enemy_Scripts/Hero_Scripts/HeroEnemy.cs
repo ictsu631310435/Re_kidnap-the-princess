@@ -1,9 +1,7 @@
 using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class HeroEnemy : Enemy
 {
@@ -54,12 +52,6 @@ public class HeroEnemy : Enemy
         }
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    
-    //}
-
     void OnDestroy()
     {
         foreach (GameObject item in unpackGameObjects)
@@ -76,20 +68,6 @@ public class HeroEnemy : Enemy
     {
         GameObject swordwave = Instantiate(swordwavePrefab, attackOrigin.position, transform.rotation);
         swordwave.GetComponent<Projectile>().Initialize(gameObject);
-        /*if (retaliateCounter < retaliateThreshold)
-        {
-            GameObject swordwave = Instantiate(swordwavePrefab, attackOrigin.position, transform.rotation);
-            swordwave.GetComponent<Projectile>().Initialize(gameObject);
-        }
-        else
-        {
-            retaliateCounter = 0;
-            for (int i = 0; i < retaliateBulletNum; i++)
-            {
-                GameObject swordwave = Instantiate(swordwavePrefab, attackOrigin.position, transform.rotation);
-                swordwave.GetComponent<Projectile>().Initialize(gameObject, startAngle + (angleOffset * i));
-            }
-        }*/
     }
 
     public override void Attack(StatusEffect inflictEffect)
