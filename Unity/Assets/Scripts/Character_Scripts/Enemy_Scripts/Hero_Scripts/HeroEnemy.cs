@@ -61,6 +61,11 @@ public class HeroEnemy : Enemy
                 Destroy(item);
             }
         }
+
+        if (nextPhaseCutscene)
+        {
+            nextPhaseCutscene.gameObject.SetActive(true);
+        }
     }
 
     #region Methods

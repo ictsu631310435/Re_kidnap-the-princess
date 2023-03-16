@@ -37,12 +37,7 @@ public class Dummy : Character
         }
         else if (!_fullHealth && _regenTimer >= regenAfterTime)
         {
-            // Regenerate to full health when (_regenTimer) reach (regenAfterTime)
-            _health.ChangeHealth(_health.maxHealth);
-
-            _fullHealth = true;
-            // Reset timer after fully regenerated
-            _regenTimer = 0.0f;
+            RegenerateHealth();
         }
     }
     #endregion
@@ -52,6 +47,15 @@ public class Dummy : Character
     {
         _fullHealth = false;
         // Reset timer after took a hit
+        _regenTimer = 0.0f;
+    }
+
+    public void RegenerateHealth()
+    {
+        // Regenerate to full health when (_regenTimer) reach (regenAfterTime)
+        _health.ChangeHealth(_health.maxHealth);
+        _fullHealth = true;
+        // Reset timer after fully regenerated
         _regenTimer = 0.0f;
     }
 }

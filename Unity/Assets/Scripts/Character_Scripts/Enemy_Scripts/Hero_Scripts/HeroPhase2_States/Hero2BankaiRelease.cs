@@ -13,6 +13,8 @@ public class Hero2BankaiRelease : StateMachineBehaviour
 
     public float emitDelaySeconds;
 
+    public string audioClipName;
+
     private bool _isEmit;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -32,6 +34,11 @@ public class Hero2BankaiRelease : StateMachineBehaviour
         if (_hero.animator)
         {
             _hero.animator.SetTrigger("ReleaseBankai");
+        }
+
+        if (_hero.audioController)
+        {
+            _hero.audioController.PlayClipAtPoint(audioClipName);
         }
     }
 

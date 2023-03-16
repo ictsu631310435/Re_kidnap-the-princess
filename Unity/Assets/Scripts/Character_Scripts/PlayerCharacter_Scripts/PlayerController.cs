@@ -29,6 +29,9 @@ public class PlayerController : Character
     public int maxMana;
     public Slider manaSlider;
 
+    public int fireballCost;
+    public int healCost;
+
     //
     private Vector2 _move;
     private float _speed;
@@ -59,6 +62,16 @@ public class PlayerController : Character
     {
         direction = (transform.rotation * Vector3.forward);
     }
+
+    /*void OnEnable()
+    {
+        GetComponent<HealthController>().OnHealthDepleted += GameController.Instance
+    }
+
+    void OnDisable()
+    {
+        
+    }*/
     #endregion
 
     #region Methods
@@ -153,6 +166,11 @@ public class PlayerController : Character
         {
             animator.SetBool("isDashing", true);
         }
+
+        if (audioController)
+        {
+            audioController.PlayClipAtPoint("Dash");
+        }
     }
 
     public void DashStop()
@@ -176,6 +194,11 @@ public class PlayerController : Character
         {
             animator.SetTrigger("Sword");
         }
+
+        if (audioController)
+        {
+            audioController.PlayClipAtPoint("SwordSwing");
+        }
     }
 
     public IEnumerator SwordAttackHit(Transform attackOrigin, float attackRadius, float waitTime, StatusEffect inflictEffect)
@@ -192,10 +215,10 @@ public class PlayerController : Character
             }
             health.ChangeHealth(-attackDamage);
 
-            if (inflictEffect != null)
+            //StatusEffectManager effectManager = collider.gameObject.GetComponent<StatusEffectManager>();
+            if (inflictEffect && collider.TryGetComponent(out StatusEffectManager effect))
             {
-                StatusEffectManager effectManager = collider.gameObject.GetComponent<StatusEffectManager>();
-                effectManager.ApplyEffect(inflictEffect, gameObject);
+                effect.ApplyEffect(inflictEffect, gameObject);
             }
         }
     }
@@ -206,11 +229,16 @@ public class PlayerController : Character
 
         LockRotation();
 
-        ChangeMana(-3);
+        ChangeMana(-fireballCost);
 
         if (animator)
         {
             animator.SetTrigger("Magic");
+        }
+
+        if (audioController)
+        {
+            audioController.PlayClipAtPoint("Fireball");
         }
     }
 

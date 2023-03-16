@@ -228,6 +228,7 @@ MonoBehaviour:
   damageDelaySeconds: 0.7
   inflictEffect: {fileID: 11400000, guid: 62dc894446063e548845bdca807db874, type: 2}
   lookAtPlayer: 1
+  audioClipName: SwordSwing
 --- !u!1102 &-2726703327780202701
 AnimatorState:
   serializedVersion: 6
@@ -321,6 +322,7 @@ MonoBehaviour:
   damageDelaySeconds: 0.6
   inflictEffect: {fileID: 0}
   lookAtPlayer: 1
+  audioClipName: Swordwave
 --- !u!1101 &-805038430641601405
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -611,6 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emitDelaySeconds: 0.9
   lookAtPlayer: 1
+  audioClipName: Swordwave
 --- !u!1102 &3823375693547600343
 AnimatorState:
   serializedVersion: 6

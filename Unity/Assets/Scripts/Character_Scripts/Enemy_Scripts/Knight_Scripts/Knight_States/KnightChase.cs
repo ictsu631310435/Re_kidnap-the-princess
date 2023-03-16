@@ -29,8 +29,11 @@ public class KnightChase : StateMachineBehaviour
 
             //_knight.detectRange = normalDetectRange;
 
-            _knight.animator.SetBool("isWalking", true);
-            _knight.animator.SetBool("isRunning", false);
+            if (_knight.animator)
+            {
+                _knight.animator.SetBool("isWalking", true);
+                _knight.animator.SetBool("isRunning", false);
+            }
         }
         else
         {
@@ -42,8 +45,11 @@ public class KnightChase : StateMachineBehaviour
 
             //_knight.detectRange = runDetectRange;
 
-            _knight.animator.SetBool("isWalking", false);
-            _knight.animator.SetBool("isRunning", true);
+            if (_knight.animator)
+            {
+                _knight.animator.SetBool("isWalking", false);
+                _knight.animator.SetBool("isRunning", true);
+            }
         }
     }
 

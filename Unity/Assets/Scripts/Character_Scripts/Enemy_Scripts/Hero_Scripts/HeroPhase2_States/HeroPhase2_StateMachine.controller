@@ -193,6 +193,7 @@ MonoBehaviour:
   startAngle: -90
   angleOffset: 45
   emitDelaySeconds: 0.8
+  audioClipName: Swordwave
 --- !u!1102 &-4077942394794163876
 AnimatorState:
   serializedVersion: 6
@@ -434,37 +435,37 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isChasing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: LightSwordChanneling
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Hurt
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isDead
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -586,10 +587,14 @@ MonoBehaviour:
   attacks:
   - hitDelaySeconds: 0.5
     knockbackEffect: {fileID: 11400000, guid: 23cf78591d0de6c4ea98f6f0ee88176a, type: 2}
+    audioDelaySeconds: 0
   - hitDelaySeconds: 0.9
     knockbackEffect: {fileID: 11400000, guid: 23cf78591d0de6c4ea98f6f0ee88176a, type: 2}
+    audioDelaySeconds: 0.4
   - hitDelaySeconds: 1.8
     knockbackEffect: {fileID: 11400000, guid: 3baf10542da03ee4599aecb7a463e2e4, type: 2}
+    audioDelaySeconds: 1.3
+  audioClipName: SwordSwing
 --- !u!1101 &2474068585190176665
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -796,6 +801,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 2
+  lightSwordEmitter: {fileID: 3956518691370835320, guid: ee21c13a35f67164d9faaa9ab90ae0bc,
+    type: 3}
+  delayEmitSeconds: 1
   _remainingDuration: 0
 --- !u!114 &7095753970956454048
 MonoBehaviour:
@@ -812,10 +820,14 @@ MonoBehaviour:
   attacks:
   - hitDelaySeconds: 0.3
     knockbackEffect: {fileID: 11400000, guid: 23cf78591d0de6c4ea98f6f0ee88176a, type: 2}
+    audioDelaySeconds: 0
   - hitDelaySeconds: 0.7
     knockbackEffect: {fileID: 11400000, guid: 23cf78591d0de6c4ea98f6f0ee88176a, type: 2}
+    audioDelaySeconds: 0.4
   - hitDelaySeconds: 1.6
     knockbackEffect: {fileID: 11400000, guid: 3baf10542da03ee4599aecb7a463e2e4, type: 2}
+    audioDelaySeconds: 1.1
+  audioClipName: SwordSwing
 --- !u!1101 &7208336016111627086
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

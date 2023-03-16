@@ -16,7 +16,7 @@ public class PlayerHealState : StateMachineBehaviour
         _input = animator.GetComponent<PlayerInputsReceiver>();
 
         _player = animator.GetComponent<PlayerController>();
-        _player.ChangeMana(-5);
+        _player.ChangeMana(-_player.healCost);
 
         _health = animator.GetComponent<HealthController>();
         _health.StartCoroutine(Heal(_health.maxHealth / 2, healDelaySeconds));

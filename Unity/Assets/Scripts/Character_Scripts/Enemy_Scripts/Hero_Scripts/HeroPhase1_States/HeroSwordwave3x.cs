@@ -10,6 +10,8 @@ public class HeroSwordwave3x : StateMachineBehaviour
 
     public bool lookAtPlayer;
 
+    public string audioClipName;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -23,6 +25,11 @@ public class HeroSwordwave3x : StateMachineBehaviour
         if (_hero.animator)
         {
             _hero.animator.SetTrigger("Swordwave3x");
+        }
+
+        if (_hero.audioController)
+        {
+            _hero.audioController.PlayClipAtPoint(audioClipName);
         }
     }
 

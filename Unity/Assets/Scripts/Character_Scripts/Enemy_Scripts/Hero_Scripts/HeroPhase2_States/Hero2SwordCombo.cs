@@ -13,9 +13,13 @@ public class Hero2SwordCombo : StateMachineBehaviour
         public float hitDelaySeconds;
 
         public KnockBack knockbackEffect;
+
+        public float audioDelaySeconds;
     }
 
     public Attack[] attacks;
+
+    public string audioClipName;
 
     private HeroEnemyPhase2 _hero;
     #endregion
@@ -30,6 +34,11 @@ public class Hero2SwordCombo : StateMachineBehaviour
         foreach (Attack item in attacks)
         {
             _hero.StartCoroutine(DelayHit(item.hitDelaySeconds, item.knockbackEffect));
+
+            if (_hero.audioController)
+            {
+                _hero.StartCoroutine(DelayPlayAudio(item.audioDelaySeconds));
+            }
         }
 
         if (_hero.animator)
@@ -49,5 +58,12 @@ public class Hero2SwordCombo : StateMachineBehaviour
         yield return new WaitForSeconds(waitSeconds);
 
         _hero.Attack(knockBack);
+    }
+
+    IEnumerator DelayPlayAudio(float waitSeconds)
+    {
+        yield return new WaitForSeconds(waitSeconds);
+
+        _hero.audioController.PlayClipAtPoint(audioClipName);
     }
 }

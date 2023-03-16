@@ -1,5 +1,59 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1605892136946188279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5594519309242089023}
+  - component: {fileID: 447291411614141428}
+  m_Layer: 12
+  m_Name: AudioController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5594519309242089023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605892136946188279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3619485585069065886}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &447291411614141428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605892136946188279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 665adcb5c7eb0e54f8cab487cd1f3da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Fireball
+    audioClip: {fileID: 8300000, guid: 93e529640497d2e43ab6c18869012b3b, type: 3}
+    mixerGroup: {fileID: -2190507236778344, guid: 84be4c6830c0a7848ae95dd0e8b6e5cf,
+      type: 2}
+    loop: 0
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+    addAudioSource: 0
 --- !u!1 &3619485584870916520
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,6 +126,7 @@ Transform:
   - {fileID: 3619485584870916521}
   - {fileID: 2067648203034143023}
   - {fileID: 2523723395597135485}
+  - {fileID: 5594519309242089023}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -95,6 +150,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   character: {fileID: 7042877390587399335}
+  audioController: {fileID: 447291411614141428}
   rbody: {fileID: 0}
   animator: {fileID: 0}
   canAct: 0
@@ -180,6 +236,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  <KeepVulnerability>k__BackingField: 0
   OnHealthDepleted:
     m_PersistentCalls:
       m_Calls:
@@ -365,7 +422,7 @@ PrefabInstance:
     - target: {fileID: 2623886651089899469, guid: 5c6476bdf59890d42b984b28d0540f2a,
         type: 3}
       propertyPath: uniqueID
-      value: 7413238056348592065
+      value: 8398038764807531735
       objectReference: {fileID: 0}
     - target: {fileID: 2813365615784423603, guid: 5c6476bdf59890d42b984b28d0540f2a,
         type: 3}

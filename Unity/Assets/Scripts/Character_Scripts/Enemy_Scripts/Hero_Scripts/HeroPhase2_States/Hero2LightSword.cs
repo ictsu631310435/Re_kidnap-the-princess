@@ -5,10 +5,17 @@ using UnityEngine;
 public class Hero2LightSword : StateMachineBehaviour
 {
     public float duration;
-    [SerializeField] private float _remainingDuration;
+
+    public GameObject lightSwordEmitter;
+
+    public float delayEmitSeconds;
 
     private HeroEnemyPhase2 _hero;
     private Animator _stateMachine;
+
+    [SerializeField] private float _remainingDuration;
+
+    private GameObject emitter;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -17,6 +24,8 @@ public class Hero2LightSword : StateMachineBehaviour
         _hero = animator.GetComponent<HeroEnemyPhase2>();
 
         _hero.StartCoroutine(ToCombatStance(duration));
+
+        _hero.StartCoroutine(DelayEmit(delayEmitSeconds));
 
         _hero.currentState = HeroEnemyPhase2.Action.RangedAttack;
         _hero.nextState = HeroEnemyPhase2.Action.CombatStance;
@@ -31,7 +40,6 @@ public class Hero2LightSword : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _hero.aiPath.canMove = false;
-        _hero.LookAt(_hero.player);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -52,5 +60,13 @@ public class Hero2LightSword : StateMachineBehaviour
         yield return new WaitForSeconds(waitSeconds);
 
         _stateMachine.SetBool("LightSwordChanneling", false);     
+    }
+
+    IEnumerator DelayEmit(float waitSeconds)
+    {
+        yield return new WaitForSeconds(waitSeconds);
+
+        emitter = Instantiate(lightSwordEmitter, _hero.transform.position, _hero.transform.rotation);
+        Destroy(emitter, duration - waitSeconds);
     }
 }

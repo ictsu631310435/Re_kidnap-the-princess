@@ -22,7 +22,10 @@ public class HealthController : MonoBehaviour
     public bool Invulnerable { get; set; }
 
     public UnityEvent<int> OnHealthChanged;
-    
+
+    [field: SerializeField]
+    public bool KeepVulnerability { get; private set; }
+
     public UnityEvent OnHealthDepleted;
     #endregion
 
@@ -58,7 +61,7 @@ public class HealthController : MonoBehaviour
             {
                 // Invoke HealthDepleted event
                 OnHealthDepleted?.Invoke();
-                Invulnerable = true;
+                Invulnerable = !KeepVulnerability;
             }
         }
     }

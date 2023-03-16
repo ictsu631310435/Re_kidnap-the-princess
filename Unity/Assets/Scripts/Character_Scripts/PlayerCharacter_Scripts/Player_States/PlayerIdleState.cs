@@ -35,7 +35,7 @@ public class PlayerIdleState : StateMachineBehaviour
             }
             else if (_input.magic)
             {
-                if (_player.currentMana < 3)
+                if (_player.currentMana < _player.fireballCost)
                 {
                     _input.magic = false;
                 }
@@ -47,7 +47,7 @@ public class PlayerIdleState : StateMachineBehaviour
             else if (_input.heal)
             {
                 HealthController health = animator.GetComponent<HealthController>();
-                if (_player.currentMana < 5 || health.CurrentHealth >= health.maxHealth)
+                if (_player.currentMana < _player.healCost || health.CurrentHealth >= health.maxHealth)
                 {
                     _input.heal = false;
                 }

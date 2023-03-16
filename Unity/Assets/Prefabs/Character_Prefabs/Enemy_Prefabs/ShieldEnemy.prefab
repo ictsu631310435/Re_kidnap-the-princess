@@ -66,6 +66,60 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2834049043617012723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2815974924789440957}
+  - component: {fileID: 3525447437645589841}
+  m_Layer: 12
+  m_Name: AudioController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2815974924789440957
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834049043617012723}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6278547510750367899}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3525447437645589841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834049043617012723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 665adcb5c7eb0e54f8cab487cd1f3da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: ShieldCharge
+    audioClip: {fileID: 8300000, guid: 7cbd6645c9006d342b4b8c8c2598e775, type: 3}
+    mixerGroup: {fileID: -2190507236778344, guid: 84be4c6830c0a7848ae95dd0e8b6e5cf,
+      type: 2}
+    loop: 0
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+    addAudioSource: 0
 --- !u!1 &5445888115384668355
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +158,7 @@ Transform:
   - {fileID: 2883315500255510233}
   - {fileID: 6020704603679445611}
   - {fileID: 3078366074994921985}
+  - {fileID: 2815974924789440957}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -127,6 +182,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   character: {fileID: 3610137890590878546}
+  audioController: {fileID: 3525447437645589841}
   rbody: {fileID: 0}
   animator: {fileID: 0}
   canAct: 0
@@ -208,6 +264,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  <KeepVulnerability>k__BackingField: 0
   OnHealthDepleted:
     m_PersistentCalls:
       m_Calls:
@@ -309,7 +366,7 @@ PrefabInstance:
     - target: {fileID: 2623886651089899469, guid: 5c6476bdf59890d42b984b28d0540f2a,
         type: 3}
       propertyPath: uniqueID
-      value: 6118236886473926833
+      value: 8234551053641286646
       objectReference: {fileID: 0}
     - target: {fileID: 2623886651089899469, guid: 5c6476bdf59890d42b984b28d0540f2a,
         type: 3}

@@ -25,6 +25,8 @@ public abstract class Character : MonoBehaviour
     [Tooltip("Character model")]
     public GameObject character;
 
+    public AudioController audioController;
+
     // HideInInspector
     [HideInInspector] public Rigidbody rbody;
     [HideInInspector] public Animator animator;

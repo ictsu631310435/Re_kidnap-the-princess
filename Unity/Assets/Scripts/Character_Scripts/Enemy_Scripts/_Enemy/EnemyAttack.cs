@@ -15,6 +15,8 @@ public class EnemyAttack : StateMachineBehaviour
     public StatusEffect inflictEffect;
 
     public bool lookAtPlayer;
+
+    public string audioClipName;
     #endregion
 
     #region Unity Callbacks
@@ -42,6 +44,11 @@ public class EnemyAttack : StateMachineBehaviour
         if (enemy.animator)
         {
             enemy.animator.SetTrigger("Attack");
+        }
+
+        if (enemy.audioController)
+        {
+            enemy.audioController.PlayClipAtPoint(audioClipName);
         }
     }
 

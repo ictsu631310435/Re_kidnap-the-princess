@@ -9,6 +9,8 @@ public class ShieldGuardCharge : StateMachineBehaviour
 
     [SerializeField] private float _remainingDuration;
 
+    public string audioClipName;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -24,7 +26,16 @@ public class ShieldGuardCharge : StateMachineBehaviour
         _shieldGuard.chargeHitBox.SetActive(true);
 
         animator.SetBool("isCharging", true);
-        _shieldGuard.animator.SetBool("isCharging", true);
+
+        if (_shieldGuard.animator)
+        {
+            _shieldGuard.animator.SetBool("isCharging", true);
+        }
+
+        if (_shieldGuard.audioController)
+        {
+            _shieldGuard.audioController.PlayClipAtPoint(audioClipName);
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

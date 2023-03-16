@@ -128,6 +128,69 @@ Transform:
   m_Father: {fileID: 2253548204354355510}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4347887090617336571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4946703190449355526}
+  - component: {fileID: 1295666138476719046}
+  m_Layer: 0
+  m_Name: AudioController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4946703190449355526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4347887090617336571}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8650913833333674000}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1295666138476719046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4347887090617336571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 665adcb5c7eb0e54f8cab487cd1f3da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: SwordSwing
+    audioClip: {fileID: 8300000, guid: 5f9a6ad9701b59a43867602f063070d6, type: 3}
+    mixerGroup: {fileID: -2190507236778344, guid: 84be4c6830c0a7848ae95dd0e8b6e5cf,
+      type: 2}
+    loop: 0
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+    addAudioSource: 0
+  - name: Swordwave
+    audioClip: {fileID: 8300000, guid: 93e529640497d2e43ab6c18869012b3b, type: 3}
+    mixerGroup: {fileID: -2190507236778344, guid: 84be4c6830c0a7848ae95dd0e8b6e5cf,
+      type: 2}
+    loop: 0
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+    addAudioSource: 0
 --- !u!1 &5431430030286587927
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +266,7 @@ Transform:
   - {fileID: 1728906451141671840}
   - {fileID: 7511696576918357334}
   - {fileID: 2253548204354355510}
+  - {fileID: 4946703190449355526}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -226,6 +290,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   character: {fileID: 1180770886368039459}
+  audioController: {fileID: 1295666138476719046}
   rbody: {fileID: 0}
   animator: {fileID: 0}
   canAct: 0
@@ -318,6 +383,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  <KeepVulnerability>k__BackingField: 0
   OnHealthDepleted:
     m_PersistentCalls:
       m_Calls:
@@ -534,7 +600,7 @@ PrefabInstance:
     - target: {fileID: 2623886651089899469, guid: 5c6476bdf59890d42b984b28d0540f2a,
         type: 3}
       propertyPath: uniqueID
-      value: 8440701599012528281
+      value: 7093314751905590720
       objectReference: {fileID: 0}
     - target: {fileID: 2813365615784423603, guid: 5c6476bdf59890d42b984b28d0540f2a,
         type: 3}

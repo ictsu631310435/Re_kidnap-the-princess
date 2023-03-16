@@ -21,18 +21,6 @@ public class ShieldGuardEnemy : Enemy
     }
     public WhatsHit whatsHit;
 
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    
-    //}
-
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    
-    //}
-
     public override bool isDamageable()
     {
         StatusEffectManager effectManager = GetComponent<StatusEffectManager>();
@@ -53,15 +41,5 @@ public class ShieldGuardEnemy : Enemy
     public override void Hurt()
     {
         return;
-    }
-
-    public override void Attack()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void Attack(StatusEffect inflictEffect)
-    {
-        throw new System.NotImplementedException();
     }
 }

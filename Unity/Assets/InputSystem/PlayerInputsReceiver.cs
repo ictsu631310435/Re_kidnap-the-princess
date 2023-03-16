@@ -19,6 +19,8 @@ public class PlayerInputsReceiver : MonoBehaviour
 
     private Camera _mainCamera;
 
+    public bool pause;
+
     void Start()
     {
         _mainCamera = Camera.main;    
@@ -54,28 +56,58 @@ public class PlayerInputsReceiver : MonoBehaviour
         HealInput(value.isPressed);
     }
 
+    public void OnPause(InputValue value)
+    {
+        PauseInput(value.isPressed);
+    }
+
     public void MoveInput(Vector2 newMoveDirection)
     {
+        if (pause)
+        {
+            return;
+        }
+
         move = newMoveDirection;
     }
 
     public void DashInput(bool newDashState)
     {
+        if (pause)
+        {
+            return;
+        }
+
         dash = newDashState;
     }
 
     public void SwordInput(bool newSwordState)
     {
+        if (pause)
+        {
+            return;
+        }
+
         sword = newSwordState;
     }
 
     public void MagicInput(bool newMagicState)
     {
+        if (pause)
+        {
+            return;
+        }
+
         magic = newMagicState;
     }
 
     public void LookInput(Vector2 newLookDirection)
     {
+        if (pause)
+        {
+            return;
+        }
+
         mousePosition = newLookDirection;
         
         // lookDirection = Vector3 of mousePosition - Vector3 of half screen resolution
@@ -95,6 +127,11 @@ public class PlayerInputsReceiver : MonoBehaviour
 
     public void HealInput(bool newHealState)
     {
+        if (pause)
+        {
+            return;
+        }
+
         heal = newHealState;
     }
 
@@ -108,5 +145,19 @@ public class PlayerInputsReceiver : MonoBehaviour
         lookDirection = Vector3.zero;
         lookRotation = Quaternion.identity;
         heal = false;
+    }
+
+    public void PauseInput(bool newPauseState)
+    {
+        pause = pause == true ? !newPauseState : newPauseState;
+
+        if (!GameController.Instance)
+        {
+            return;
+        }
+
+        GameController gameController = GameController.Instance;
+
+        gameController.SetPause(pause);
     }
 }
