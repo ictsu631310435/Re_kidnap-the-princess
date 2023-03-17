@@ -9,6 +9,10 @@ public class CutsceneEvent : MonoBehaviour
     [SerializeField] private float cutsceneDuration;
 
     public UnityEvent OnCutsceneStart;
+
+    [field : SerializeField]
+    public bool DestroyAfterEnd { get; private set; }
+
     public UnityEvent OnCutsceneEnd;
 
     // Start is called before the first frame update
@@ -20,15 +24,12 @@ public class CutsceneEvent : MonoBehaviour
         Invoke(nameof(CutsceneEndEvent), cutsceneDuration);
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    
-    //}
-
     private void CutsceneEndEvent()
     {
         OnCutsceneEnd?.Invoke();
-        Destroy(gameObject);
+        if (DestroyAfterEnd)
+        {
+            Destroy(gameObject);
+        }
     }
 }

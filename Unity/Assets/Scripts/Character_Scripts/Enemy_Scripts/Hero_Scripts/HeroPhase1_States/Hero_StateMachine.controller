@@ -733,7 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486ad3541ad45744388f43d6dbdcc5fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyDelaySeconds: 1.5
+  destroyDelaySeconds: 0.5
 --- !u!1102 &6674682622877109079
 AnimatorState:
   serializedVersion: 6

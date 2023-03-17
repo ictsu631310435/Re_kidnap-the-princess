@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
 
     public TMP_Text timeText;
 
+    public TMP_Text victoryTimeText;
+
     //
     public static GameController Instance { get; private set; }
 
@@ -44,7 +46,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (useTimer)
+        if (useTimer && gameState == GameState.Play)
         {
             sceneTime = Time.timeSinceLevelLoad;
             if (timeText)
@@ -81,6 +83,17 @@ public class GameController : MonoBehaviour
         {
             pauseMenuPanel.SetActive(value);
         }
+    }
+
+    public void PassTutorial()
+    {
+        PlayerPrefs.SetInt("passTutorial", 1);
+    }
+
+    public void GameClear()
+    {
+        gameState = GameState.Over;
+        victoryTimeText.text = FormatTime(sceneTime);
     }
 
     public void LoadScene(string sceneName)
